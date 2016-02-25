@@ -8,48 +8,104 @@
 
 import Foundation
 
+print("-----------------------")
+print("IT'S JOGO DOS 8 TIME!!!!!")
+print("-----------------------")
+print("Example of input\nThis:")
+print("1 2 3 4 0 5 6 7 8\nTurns into this:")
+print("1 2 3")
+print("4 _ 5")
+print("6 7 8")
+print("Introduce your table here: ", terminator:"")
+var tableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 
-print("Agua Parada dá Denge?")
-let answer = readLine(stripNewline: true)!
-
-print("Write your table you mofo")
-
-var table_from_user: [Int] = []
-
-// read array
-var arr = readLine()!.characters.split(" ").map(String.init)
-
-if arr.count != 9{
-    print("Your an idiot!")
+tryingToRead:
+    if let userInput = readLine(stripNewline: true){
+    
+    var string_table = userInput.characters.split(" ").map(String.init)
+    print("Checking Table...")
+    
+    if string_table.count != 9{
+        print("BAD INPUT!!!")
+        break tryingToRead
+    }
+    
+    var index = 0
+    for i in 0..<3{
+        for j in 0..<3{
+            if let k = Int(string_table[index]){
+                tableFromUser[i][j] = k
+                index+=1
+            }
+            else {
+                print("BAD INPUT!!")
+                break tryingToRead
+            }
+        }
+    }
+    
+    
+    print("Table Accepted")
+    
 }
 else{
-// iterate over the array in reverse order and print the elements separated by space
-    
-for i in (arr.count-1).stride(through: 0, by: -1) {
-   // print(String(i) + " " + arr[i])
-    table_from_user.append(Int(arr[i])!)
+    print("BAD INPUT!!!")
 }
 
+//Lista para guardar estados
+var stateList = LinkedList<State>()
+var visitedStates = Set<State>()
+
+var index_i = 0
+var index_j = 0
+//Find blank position
+for i in 0..<3{
+    for j in 0..<3{
+        if(tableFromUser[i][j]==0){
+            index_i=i;
+            index_j=j;
+        }
+    }
 }
 
+//Create Initial State
 let estado_teste = State(
-    table: table_from_user,
+    table: tableFromUser,
     parent: nil,
     move: nil,
     depth: 0,
     cost: 0,
-    white_position: 5
+    blank_position_x: index_i,
+    blank_position_y: index_j
 )
 
-let someArray = [10, 20, 30]
-let list = LinkedList<State>()
-
-list.addLink(estado_teste)
+//Adiciona-lo à lista
+stateList.addLink(estado_teste)
 
 
-//print(response, terminator: "")
+print("Selecione o tipo de pesquisa")
+print("-Profundidade: 1\n-Largura: 2\n-Profundidade Iterativa: 3\n-Gulosa: 4\n-A*: 5")
+print("-----------------------------------")
 
-print("Adeus")
+print("Pesquisa: ", terminator:"")
+
+let searchType = readLine()
+
+let start = NSDate()
+
+let childStates = generateChild(estado_teste)
+
+for state in childStates{
+    stateList.addLink(state)
+}
+
+//sleep(5)
+
+let end = NSDate()
+
+var diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second], fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
+
+print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months, \(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes, \(diffDateComponents.second) seconds")
 
 
-list.printAllKeys()
+stateList.printAllKeys()
