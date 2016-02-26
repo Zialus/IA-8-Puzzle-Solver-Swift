@@ -24,7 +24,6 @@ class State{
         return description.hashValue
     }
 
-    
     init(table: [[Int]], parent: State?, move: Character?, depth: Int, cost: Int, blank_position_x: Int, blank_position_y: Int){
         self.table = table
         self.depth = depth
@@ -43,7 +42,7 @@ extension State: Hashable {}
 
 extension State: Equatable {}
 
-func ==(lhs: State, rhs: State) -> Bool {
+func == (lhs: State, rhs: State) -> Bool {
     let areEqual = lhs.table == rhs.table
     return areEqual
 }

@@ -93,11 +93,15 @@ let searchType = readLine()
 
 let start = NSDate()
 
-let childStates = generateChild(estado_teste)
+//let childStates = generateChild(estado_teste)
+//
+//for state in childStates{
+//    stateList.addLink(state)
+//}
 
-for state in childStates{
-    stateList.addLink(state)
-}
+stateList.printAllKeys()
+
+dfs(stateList)
 
 //sleep(5)
 

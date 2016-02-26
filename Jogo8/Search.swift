@@ -9,9 +9,21 @@
 import Foundation
 
 func dfs(stateList: LinkedList<State>) -> () {
-    while (stateList.isEmpty()){
-    
-    
+    while (!stateList.isEmpty()){
+        
+        if let state = stateList.getAtIndex(0){
+            stateList.printAllKeys()
+            stateList.removeLinkAtIndex(0)
+            
+            let childList = generateChild(state)
+            
+            for child in childList{
+                stateList.addLink(child)
+            }
+        }
+        
+        print("bom dia")
+        
     }
 }
 

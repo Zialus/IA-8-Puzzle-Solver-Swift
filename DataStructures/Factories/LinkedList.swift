@@ -110,14 +110,13 @@ public class LinkedList<T: Equatable> {
     //MARK: Key & index operations
     
     
-    //obtain link at a specific index
     func linkAtIndex(index: Int) ->LLNode<T>! {
         
         //check for nil conditions
         if ((index < 0) || (index > (self.count - 1)) || (head.key == nil)) {
             return nil
         }
-        
+            
             
         else  {
             var current: LLNode<T>! = head
@@ -135,7 +134,31 @@ public class LinkedList<T: Equatable> {
         
         
     } //end function
-
+    
+    func getAtIndex(index: Int) ->T! {
+        
+        //check for nil conditions
+        if ((index < 0) || (index > (self.count - 1)) || (head.key == nil)) {
+            return nil
+        }
+            
+            
+        else  {
+            var current: LLNode<T>! = head
+            var x: Int = 0
+            
+            //cycle through the list of items
+            while (index != x) {
+                current = current.next
+                x += 1
+            }
+            
+            return current.key
+            
+        } //end else
+        
+        
+    } //end function
     
     
     
@@ -229,8 +252,12 @@ public class LinkedList<T: Equatable> {
         
         //determine if the removal is at the head
         if (index == 0) {
-            current = current?.next
-            head = current!
+            if let current = current?.next{
+                head = current
+            }
+            else{
+                head.key=nil
+            }
             return
         }
         
