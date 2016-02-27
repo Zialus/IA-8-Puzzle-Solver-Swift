@@ -158,8 +158,7 @@ public class Sorting {
         for primaryIndex in 0..<output.count {
             
             let key = output[primaryIndex]
-            
-            
+
 //          for secondaryIndex in primaryIndex.stride(through: -1, by:-1) {
             for var secondaryIndex = primaryIndex; secondaryIndex > -1; secondaryIndex -= 1 {
                 
@@ -400,8 +399,10 @@ public class Sorting {
 		// and moves values to the left or right of the pivot based on their value
 		// it works recursively so that either side will be eventually sorted back to the top
 
-		func quickSort(var hops:[Int]) -> [Int] {
-			
+		func quickSort(hops:[Int]) -> [Int] {
+
+            var hops = hops
+
 			if (hops.count <= 1) {
 				return hops
 			}
@@ -455,7 +456,41 @@ public class Sorting {
 			return sortForMergeSort(leftSide, right: rightSide)
 		}
 		
-    
+
+
+//    func sortForMergeSort(left:[Int], right:[Int]) -> [Int] {
+//
+//        // Create a new array to place our sorted numbers
+//        var sortedArray:[Int] = []
+//        var leftCount: Int = 0
+//        var rightCount: Int = 0
+//
+//
+//        // For all of the numbers on both sides
+//        for _ in 0...(left.count + right.count) {
+//
+//            /*
+//             if we've exhausted the right side, or if we still have some to use on
+//             the left side and the current left side number is smaller in value than the
+//             right sides current value, then add the left numbers value to the sorted array
+//             */
+//
+//            if (leftCount < left.count && (rightCount >= right.count || left[leftCount] <= right[rightCount])) {
+//                leftCount+=1
+//                sortedArray.append(left[leftCount])
+//            } else if (rightCount < right.count && (leftCount >= left.count || right[rightCount] < left[leftCount])) {
+//                rightCount+=1
+//                sortedArray.append(right[rightCount])
+//            }
+//            
+//        }
+//        
+//        
+//        return sortedArray
+//    }
+
+
+
 		func sortForMergeSort(left:[Int], right:[Int]) -> [Int] {
 			
             //create a new array to place our sorted numbers
@@ -463,15 +498,7 @@ public class Sorting {
 			var leftCount = 0
 			var rightCount = 0
             
-            /*
-            var someCount: Int = left.count + right.count
-            
-            for i in 0...someCount {
-                println(i)
-            }
-            */
-            
-            
+
 			// For all of the numbers on both sides
 			(left.count + right.count).times { i in
                 
@@ -481,13 +508,16 @@ public class Sorting {
                 right sides current value, then add the left numbers value to the sorted array
                 */
                 
-				if (leftCount < left.count && (rightCount >= right.count || left[leftCount] <= right[rightCount])) {
-					sortedArray.append(left[leftCount++])
-				} else if (rightCount < right.count && (leftCount >= left.count || right[rightCount] < left[leftCount])) {
-					sortedArray.append(right[rightCount++])
-				}
-			}
-			
+                if (leftCount < left.count && (rightCount >= right.count || left[leftCount] <= right[rightCount])) {
+                    leftCount+=1
+                    sortedArray.append(left[leftCount])
+                } else if (rightCount < right.count && (leftCount >= left.count || right[rightCount] < left[leftCount])) {
+                    rightCount+=1
+                    sortedArray.append(right[rightCount])
+                }
+
+            }
+
 			return sortedArray
 		}
 	

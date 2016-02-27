@@ -20,35 +20,33 @@ print("Introduce your table here: ", terminator:"")
 var tableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 
 tryingToRead:
-    if let userInput = readLine(stripNewline: true){
-    
-    var string_table = userInput.characters.split(" ").map(String.init)
-    print("Checking Table...")
-    
-    if string_table.count != 9{
-        print("BAD INPUT!!!")
-        break tryingToRead
-    }
-    
-    var index = 0
-    for i in 0..<3{
-        for j in 0..<3{
-            if let k = Int(string_table[index]){
-                tableFromUser[i][j] = k
-                index+=1
-            }
-            else {
-                print("BAD INPUT!!")
-                break tryingToRead
+    if let userInput = readLine(stripNewline: true) {
+
+        var string_table = userInput.characters.split(" ").map(String.init)
+        print("Checking Table...")
+
+        if string_table.count != 9 {
+            print("BAD INPUT!!!")
+            break tryingToRead
+        }
+
+        var index = 0
+        for i in 0..<3 {
+            for j in 0..<3 {
+                if let k = Int(string_table[index]) {
+                    tableFromUser[i][j] = k
+                    index+=1
+                } else {
+                    print("BAD INPUT!!")
+                    break tryingToRead
+                }
             }
         }
-    }
-    
-    
-    print("Table Accepted")
-    
-}
-else{
+
+
+        print("Table Accepted")
+
+    } else {
     print("BAD INPUT!!!")
 }
 
@@ -59,11 +57,11 @@ var visitedStates = Set<State>()
 var index_i = 0
 var index_j = 0
 //Find blank position
-for i in 0..<3{
-    for j in 0..<3{
-        if(tableFromUser[i][j]==0){
-            index_i=i;
-            index_j=j;
+for i in 0..<3 {
+    for j in 0..<3 {
+        if tableFromUser[i][j]==0 {
+            index_i=i
+            index_j=j
         }
     }
 }
@@ -101,9 +99,11 @@ let start = NSDate()
 
 stateList.printAllKeys()
 
-dfs(stateList)
+//dfs(stateList)
 
 //sleep(5)
+
+print( [[1],[2]] == [[1],[2]] )
 
 let end = NSDate()
 

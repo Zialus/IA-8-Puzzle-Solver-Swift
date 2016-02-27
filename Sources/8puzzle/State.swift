@@ -33,7 +33,7 @@ class State{
         self.blank_position_y = blank_position_y
         self.cost = cost
     }
-    
+
 }
 
 extension State: CustomStringConvertible {}

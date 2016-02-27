@@ -45,9 +45,10 @@ class Math {
     
     
     //build fibonacci sequence to a specified position - recursive
-    func fib(n: Int,var sequence: Array<Int> = [0, 1]) {
+    func fib(n: Int,sequence: Array<Int> = [0, 1]) {
 
-        
+        var sequence = sequence
+
         //initialize sequence
         if n < 2 {
             return

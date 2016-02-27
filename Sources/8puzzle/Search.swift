@@ -9,32 +9,32 @@
 import Foundation
 
 func dfs(stateList: LinkedList<State>) -> () {
-    while (!stateList.isEmpty()){
-        
+    while !stateList.isEmpty() {
+
         if let state = stateList.getAtIndex(0){
             stateList.printAllKeys()
             stateList.removeLinkAtIndex(0)
-            
+
             let childList = generateChild(state)
-            
+
             for child in childList{
                 stateList.addLink(child)
             }
         }
-        
+
         print("bom dia")
-        
+
     }
 }
 
 func bfs(stateList: LinkedList<State>) -> () {
-    
+
 }
 
 
-func generateChild(currentState: State)->([State]){
+func generateChild(currentState: State) -> ([State]) {
     var newStates = [State]()
-    
+
     //Coordenates of blank position
     let x = currentState.blank_position_x
     let y = currentState.blank_position_y
@@ -76,7 +76,7 @@ func generateChild(currentState: State)->([State]){
                              blank_position_x: currentState.blank_position_x-1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
     }
-    
+
     //move célula em branco para baixo
     if(x<2){
         //tabela auxiliar que começa como sendo copia da original
@@ -89,13 +89,13 @@ func generateChild(currentState: State)->([State]){
                              blank_position_x: currentState.blank_position_x+1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
     }
-    
-    
+
+
     return newStates
 }
 
-func isSolution(currentState: State, finalState: State)->(Bool){
-    return currentState.table == finalState.table
+func isSolution(currentState: State, finalState: State) -> (Bool) {
+    return currentState == finalState
 }
 
 func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int){
@@ -106,12 +106,12 @@ func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int){
             distances[finalTable[i][j]] = abs(distances[finalTable[i][j]]-((i+1)+(j+1)))
         }
     }
-    
+
     var totalDistance = 0
-    
+
     for i in 1..<9{
         totalDistance+=distances[i]
     }
-    
+
     return totalDistance
 }
