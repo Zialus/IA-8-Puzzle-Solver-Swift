@@ -159,8 +159,8 @@ public class Sorting {
             
             let key = output[primaryIndex]
 
-//          for secondaryIndex in primaryIndex.stride(through: -1, by:-1) {
-            for var secondaryIndex = primaryIndex; secondaryIndex > -1; secondaryIndex -= 1 {
+        	for secondaryIndex in primaryIndex.stride(through: -1, by:-1) {
+            // for var secondaryIndex = primaryIndex; secondaryIndex > -1; secondaryIndex -= 1 {
                 
                 print("comparing \(key) and \(numberList[secondaryIndex])")
                 
@@ -197,8 +197,8 @@ public class Sorting {
             
             let key = output[primaryIndex]
             
-//          for secondaryIndex in primaryIndex.stride(through: -1, by:-1) {
-            for var secondaryIndex = primaryIndex; secondaryIndex > -1; secondaryIndex -= 1 {
+        	for secondaryIndex in primaryIndex.stride(through: -1, by:-1) {
+            // for var secondaryIndex = primaryIndex; secondaryIndex > -1; secondaryIndex -= 1 {
                 
                 print("comparing \(key) and \(sequence[secondaryIndex])")
                 
