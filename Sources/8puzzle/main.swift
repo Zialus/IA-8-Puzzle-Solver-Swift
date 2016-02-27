@@ -99,11 +99,11 @@ let start = NSDate()
 
 stateList.printAllKeys()
 
-//dfs(stateList)
+dfs(stateList)
 
 //sleep(5)
 
-print( [[1],[2]] == [[1],[2]] )
+// print( [[1],[2]] == [[1],[2]] )
 
 let end = NSDate()
 
