@@ -235,21 +235,70 @@ public class LinkedList<T: Equatable> {
     
     
     
-    //remove at specific index
+//    //remove at specific index
+//    func removeLinkAtIndex(index: Int) {
+//        
+//        //check for nil conditions
+//        if ((index < 0) || (index > (self.count - 1)) || (head.key == nil)) {
+//            print("link index does not exist..")
+//            return
+//        }
+//        
+//
+//        var current: LLNode<T>? =  head
+//        var trailer: LLNode<T>?
+//        var listIndex: Int = 0
+//        
+//        
+//        //determine if the removal is at the head
+//        if (index == 0) {
+//            if let current = current?.next{
+//                head = current
+//            }
+//            else{
+//                head.key=nil
+//            }
+//            return
+//        }
+//        
+//        
+//        //iterate through the remaining items
+//        while (current != nil) {
+//            
+//            if (listIndex == index) {
+//                
+//                //redirect the trailer and next pointers
+//                trailer!.next = current?.next
+//                current = nil
+//                break
+//                
+//            }
+//            
+//            //update the assignments
+//            trailer = current
+//            current = current?.next
+//            listIndex += 1
+//            
+//        } //end while
+//        
+//        
+//    } //end function
+
+
     func removeLinkAtIndex(index: Int) {
-        
+
         //check for nil conditions
         if ((index < 0) || (index > (self.count - 1)) || (head.key == nil)) {
             print("link index does not exist..")
             return
         }
-        
+
 
         var current: LLNode<T>? =  head
         var trailer: LLNode<T>?
         var listIndex: Int = 0
-        
-        
+
+
         //determine if the removal is at the head
         if (index == 0) {
             if let current = current?.next{
@@ -260,30 +309,32 @@ public class LinkedList<T: Equatable> {
             }
             return
         }
-        
-        
+
+
         //iterate through the remaining items
         while (current != nil) {
-            
+
             if (listIndex == index) {
-                
+
                 //redirect the trailer and next pointers
                 trailer!.next = current?.next
                 current = nil
                 break
-                
+
             }
-            
+
             //update the assignments
             trailer = current
             current = current?.next
             listIndex += 1
-            
+
         } //end while
-        
-        
+
+
     } //end function
-    
+
+
+
 
 
     

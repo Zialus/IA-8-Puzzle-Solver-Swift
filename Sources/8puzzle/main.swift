@@ -93,7 +93,7 @@ tryingToReadFinal:
 
 
 //Lista para guardar estados
-var stateList = LinkedList<State>()
+var stateList = Queue<State>()
 var visitedStates = Set<State>()
 
 var index_i = 0
@@ -120,7 +120,7 @@ let firstState = State(
 )
 
 //Adiciona-lo à lista
-stateList.addLink(firstState)
+stateList.enQueue(firstState)
 
 index_i = 0
 index_j = 0

@@ -121,7 +121,23 @@ public class Queue<T> {
         }
     
     }
-    
+
+    //print all keys for the class
+    func printAllKeys() {
+
+        var current: QNode! = top
+
+        print("------------------")
+
+        //assign the next instance
+        while (current != nil) {
+            print("link item is: \(current.key)")
+            current = current.next
+        }
+
+
+    }
+
     
     
     

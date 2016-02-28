@@ -8,22 +8,21 @@
 
 import Foundation
 
-func depthFirstSearch(stateList: LinkedList<State>) -> () {
+func depthFirstSearch(stateList: Queue<State>) -> () {
     while !stateList.isEmpty() {
 
-        if let state = stateList.getAtIndex(0){
+        if let state = stateList.deQueue(){
             if isSolution(state, finalState: finalState){
                 return
             }
             visitedStates.insert(state)
             stateList.printAllKeys()
-            stateList.removeLinkAtIndex(0)
 
             let childList = generateChild(state)
 
             for child in childList{
                 if !visitedStates.contains(child) {
-                    stateList.addLink(child)
+                    stateList.enQueue(child)
                 }
             }
 

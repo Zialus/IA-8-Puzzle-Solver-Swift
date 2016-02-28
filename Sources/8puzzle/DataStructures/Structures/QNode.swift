@@ -13,7 +13,7 @@ import Foundation
 
 class QNode<T> {
     
-    var key: T? = nil
+    var key: T!
     var next: QNode? = nil
 
 }
