@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 print("-----------------------")
 print("IT'S JOGO DOS 8 TIME!!!!!")
 print("-----------------------")
@@ -99,9 +100,11 @@ let start = NSDate()
 
 stateList.printAllKeys()
 
-dfs(stateList)
+chooseRoute(Int(searchType!)!)
 
-//sleep(5)
+// depthFirstSearch(stateList)
+
+// sleep(5)
 
 // print( [[1],[2]] == [[1],[2]] )
 

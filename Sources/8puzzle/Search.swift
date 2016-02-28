@@ -8,7 +8,7 @@
 
 import Foundation
 
-func dfs(stateList: LinkedList<State>) -> () {
+func depthFirstSearch(stateList: LinkedList<State>) -> () {
     while !stateList.isEmpty() {
 
         if let state = stateList.getAtIndex(0){
