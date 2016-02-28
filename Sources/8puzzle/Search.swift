@@ -12,14 +12,23 @@ func depthFirstSearch(stateList: LinkedList<State>) -> () {
     while !stateList.isEmpty() {
 
         if let state = stateList.getAtIndex(0){
+            if isSolution(state, finalState: finalState){
+                return
+            }
+            visitedStates.insert(state)
             stateList.printAllKeys()
             stateList.removeLinkAtIndex(0)
 
             let childList = generateChild(state)
 
             for child in childList{
-                stateList.addLink(child)
+                if !visitedStates.contains(child) {
+                    stateList.addLink(child)
+                }
             }
+
+
+
         }
 
         print("bom dia")
@@ -94,8 +103,8 @@ func generateChild(currentState: State) -> ([State]) {
     return newStates
 }
 
-func isSolution(currentState: State, finalState: State) -> (Bool) {
-    return currentState == finalState
+func isSolution(someState: State, finalState: State) -> (Bool) {
+    return someState == finalState
 }
 
 func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int){

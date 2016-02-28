@@ -18,7 +18,9 @@ class State{
     let blank_position_x: Int
     let blank_position_y: Int
     var description: String {
-        return "{ Tabela: " + String(table) + ", Cost: " + String(cost) + "}"
+//        return "{ Tabela: " + String(table) + ", Cost: " + String(cost) + "}"  withheld until i find a better way to Has a State
+        return "{ Tabela: " + String(table) + " }"
+
     }
     var hashValue: Int {
         return description.hashValue

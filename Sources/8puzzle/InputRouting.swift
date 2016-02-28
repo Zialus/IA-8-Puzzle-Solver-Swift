@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func chooseRoute(searchType: Int)->() {
+func chooseRoute(searchType: Int)->() {
 
     switch searchType {
     case 1:

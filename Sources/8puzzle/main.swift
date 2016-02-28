@@ -8,6 +8,8 @@
 
 import Foundation
 
+var firstTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
+var finalTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 
 print("-----------------------")
 print("IT'S JOGO DOS 8 TIME!!!!!")
@@ -17,10 +19,11 @@ print("1 2 3 4 0 5 6 7 8\nTurns into this:")
 print("1 2 3")
 print("4 _ 5")
 print("6 7 8")
-print("Introduce your table here: ", terminator:"")
-var tableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 
-tryingToRead:
+
+print("Introduce your initial table here: ", terminator:"")
+
+tryingToReadFirst:
     if let userInput = readLine(stripNewline: true) {
 
         var string_table = userInput.characters.split(" ").map(String.init)
@@ -28,18 +31,18 @@ tryingToRead:
 
         if string_table.count != 9 {
             print("BAD INPUT!!!")
-            break tryingToRead
+            break tryingToReadFirst
         }
 
         var index = 0
         for i in 0..<3 {
             for j in 0..<3 {
                 if let k = Int(string_table[index]) {
-                    tableFromUser[i][j] = k
+                    firstTableFromUser[i][j] = k
                     index+=1
                 } else {
                     print("BAD INPUT!!")
-                    break tryingToRead
+                    break tryingToReadFirst
                 }
             }
         }
@@ -51,6 +54,44 @@ tryingToRead:
     print("BAD INPUT!!!")
 }
 
+print("Introduce your final table here: ", terminator:"")
+
+tryingToReadFinal:
+    if let userInput = readLine(stripNewline: true) {
+
+    var string_table = userInput.characters.split(" ").map(String.init)
+    print("Checking Table...")
+
+    if string_table.count != 9 {
+        print("BAD INPUT!!!")
+        break tryingToReadFinal
+    }
+
+    var index = 0
+    for i in 0..<3 {
+        for j in 0..<3 {
+            if let k = Int(string_table[index]) {
+                finalTableFromUser[i][j] = k
+                index+=1
+            } else {
+                print("BAD INPUT!!")
+                break tryingToReadFinal
+            }
+        }
+    }
+
+
+    print("Table Accepted")
+
+} else {
+    print("BAD INPUT!!!")
+}
+
+
+
+
+
+
 //Lista para guardar estados
 var stateList = LinkedList<State>()
 var visitedStates = Set<State>()
@@ -60,7 +101,7 @@ var index_j = 0
 //Find blank position
 for i in 0..<3 {
     for j in 0..<3 {
-        if tableFromUser[i][j]==0 {
+        if firstTableFromUser[i][j]==0 {
             index_i=i
             index_j=j
         }
@@ -68,8 +109,8 @@ for i in 0..<3 {
 }
 
 //Create Initial State
-let estado_teste = State(
-    table: tableFromUser,
+let firstState = State(
+    table: firstTableFromUser,
     parent: nil,
     move: nil,
     depth: 0,
@@ -79,7 +120,33 @@ let estado_teste = State(
 )
 
 //Adiciona-lo à lista
-stateList.addLink(estado_teste)
+stateList.addLink(firstState)
+
+index_i = 0
+index_j = 0
+//Find blank position
+for i in 0..<3 {
+    for j in 0..<3 {
+        if finalTableFromUser[i][j]==0 {
+            index_i=i
+            index_j=j
+        }
+    }
+}
+
+//Create Initial State
+let finalState = State(
+    table: finalTableFromUser,
+    parent: nil,
+    move: nil,
+    depth: 0,
+    cost: 0,
+    blank_position_x: index_i,
+    blank_position_y: index_j
+)
+
+
+
 
 
 print("Selecione o tipo de pesquisa")
