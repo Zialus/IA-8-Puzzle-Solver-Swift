@@ -93,7 +93,6 @@ tryingToReadFinal:
 
 
 //Lista para guardar estados
-var stateList = Queue<State>()
 var visitedStates = Set<State>()
 
 var index_i = 0
@@ -120,7 +119,8 @@ let firstState = State(
 )
 
 //Adiciona-lo à lista
-stateList.enQueue(firstState)
+
+
 
 index_i = 0
 index_j = 0
@@ -165,9 +165,17 @@ let start = NSDate()
 //    stateList.addLink(state)
 //}
 
-stateList.printAllKeys()
+//stateList.printAllKeys()
 
 chooseRoute(Int(searchType!)!)
+
+//let pathState =  stateList.deQueue()
+
+//print("--------")
+//
+//print(pathState!.depth)
+//
+//print("-------")
 
 // depthFirstSearch(stateList)
 
@@ -182,4 +190,4 @@ var diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit
 print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months, \(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes, \(diffDateComponents.second) seconds")
 
 
-stateList.printAllKeys()
+//stateList.printAllKeys()

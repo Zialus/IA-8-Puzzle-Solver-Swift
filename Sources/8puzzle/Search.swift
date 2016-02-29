@@ -8,14 +8,46 @@
 
 import Foundation
 
-func depthFirstSearch(stateList: Queue<State>) -> () {
+func depthFirstSearch(stateList: Stack<State>) -> () {
+
     while !stateList.isEmpty() {
 
-        if let state = stateList.deQueue(){
+        if let state = stateList.pop(){
+
+            print(state)
+            
             if isSolution(state, finalState: finalState){
                 return
             }
-            visitedStates.insert(state)
+
+
+            stateList.printAllKeys()
+
+            let childList = generateChild(state)
+
+            for child in childList{
+                if !visitedStates.contains(child) {
+                    stateList.push(child)
+                    visitedStates.insert(child)
+
+
+                }
+            }
+            
+            
+            
+        }
+        
+        print("bom dia")
+        
+    }
+
+}
+
+func breadthFirstSearch(stateList: Queue<State>) -> () {
+    while !stateList.isEmpty() {
+
+        if let state = stateList.deQueue(){
             stateList.printAllKeys()
 
             let childList = generateChild(state)
@@ -23,6 +55,11 @@ func depthFirstSearch(stateList: Queue<State>) -> () {
             for child in childList{
                 if !visitedStates.contains(child) {
                     stateList.enQueue(child)
+                    visitedStates.insert(child)
+                    if isSolution(state, finalState: finalState){
+                        return
+                    }
+
                 }
             }
 
@@ -35,9 +72,70 @@ func depthFirstSearch(stateList: Queue<State>) -> () {
     }
 }
 
-func bfs(stateList: LinkedList<State>) -> () {
+func iterativeDepthFirstSearch() -> () {
+    let max_depth = 30
+    var current_depth = 0
+
+    while current_depth < max_depth{
+        print("Current Depth is \(current_depth)")
+        visitedStates.removeAll()
+        iterativeDepthFirstSearch(current_depth)
+        current_depth+=1
+    }
 
 }
+
+
+func iterativeDepthFirstSearch(maxDepth: Int) -> () {
+
+    var stateList = Stack<State>()
+
+
+//    stateList.printAllKeys()
+//    print("KAKAKAKAKAKA")
+
+    stateList.push(firstState)
+
+//    stateList.printAllKeys()
+
+    while !stateList.isEmpty() {
+
+        if let state = stateList.pop(){
+//            print("LALALA")
+//            print(state)
+
+            if isSolution(state, finalState: finalState){
+                print("ah e tal")
+                return
+            }
+
+
+//            stateList.printAllKeys()
+
+            let childList = generateChild(state)
+
+            for child in childList{
+                if !visitedStates.contains(child) && child.depth < maxDepth {
+                    stateList.push(child)
+                    visitedStates.insert(child)
+
+
+                }
+            }
+            
+            
+            
+        }
+        
+//        print("bom dia")
+
+    }
+    
+}
+
+
+
+
 
 
 func generateChild(currentState: State) -> ([State]) {

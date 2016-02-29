@@ -13,13 +13,24 @@ func chooseRoute(searchType: Int)->() {
     switch searchType {
     case 1:
         print("Selecionou: Pesquisa em Profundida");
+
+        var stateList = Stack<State>()
+
+        stateList.push(firstState)
+
         depthFirstSearch(stateList);
     case 2:
         print("Selecionou: Pesquisa em Largura");
-//        n=breadthFirstSearch(table_list, visited_tables, final_table);
+
+        var stateList = Queue<State>()
+
+        stateList.enQueue(firstState)
+
+        breadthFirstSearch(stateList);
     case 3:
         print("Selecionou: Pesquisa em Profundidade Iterativa");
-//        n=iterativeDepthFirstSearch(initial_table, final_table, 0);
+
+        iterativeDepthFirstSearch();
     case 4:
         print("Selecionou: Pesquisa Gulosa");
 //        n=greedySearch(table_list, visited_tables, final_table);
