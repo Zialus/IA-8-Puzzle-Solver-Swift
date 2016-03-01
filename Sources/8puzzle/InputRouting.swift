@@ -14,7 +14,7 @@ func chooseRoute(searchType: Int)->() {
     case 1:
         print("Selecionou: Pesquisa em Profundida");
 
-        var stateList = Stack<State>()
+        let stateList = Stack<State>()
 
         stateList.push(firstState)
 
@@ -22,7 +22,7 @@ func chooseRoute(searchType: Int)->() {
     case 2:
         print("Selecionou: Pesquisa em Largura");
 
-        var stateList = Queue<State>()
+        let stateList = Queue<State>()
 
         stateList.enQueue(firstState)
 

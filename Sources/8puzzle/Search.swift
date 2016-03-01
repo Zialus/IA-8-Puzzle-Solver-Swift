@@ -48,26 +48,30 @@ func breadthFirstSearch(stateList: Queue<State>) -> () {
     while !stateList.isEmpty() {
 
         if let state = stateList.deQueue(){
-            stateList.printAllKeys()
+
+//            print(state)
+
+            if isSolution(state, finalState: finalState){
+                print("Encontrei solução!!!!")
+                print(state.depth)
+                return
+            }
+
 
             let childList = generateChild(state)
 
             for child in childList{
-                if !visitedStates.contains(child) {
+//                if !visitedStates.contains(child) {
                     stateList.enQueue(child)
-                    visitedStates.insert(child)
-                    if isSolution(state, finalState: finalState){
-                        return
-                    }
-
-                }
+//                    visitedStates.insert(child)
+//                }
             }
 
 
 
         }
 
-        print("bom dia")
+//        print("bom dia")
 
     }
 }
@@ -88,7 +92,7 @@ func iterativeDepthFirstSearch() -> () {
 
 func iterativeDepthFirstSearch(maxDepth: Int) -> () {
 
-    var stateList = Stack<State>()
+    let stateList = Stack<State>()
 
 
 //    stateList.printAllKeys()

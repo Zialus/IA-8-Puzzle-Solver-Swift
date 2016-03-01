@@ -8,96 +8,19 @@
 
 import Foundation
 
+// [][] ---> 2D Array for matrices representing the 8-puzzle-game-board
 var firstTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 var finalTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
 
-print("-----------------------")
-print("IT'S JOGO DOS 8 TIME!!!!!")
-print("-----------------------")
-print("Example of input\nThis:")
-print("1 2 3 4 0 5 6 7 8\nTurns into this:")
-print("1 2 3")
-print("4 _ 5")
-print("6 7 8")
+// Display the Setup Screen
+setupScreen()
 
-
-print("Introduce your initial table here: ", terminator:"")
-
-tryingToReadFirst:
-    if let userInput = readLine(stripNewline: true) {
-
-        var string_table = userInput.characters.split(" ").map(String.init)
-        print("Checking Table...")
-
-        if string_table.count != 9 {
-            print("BAD INPUT!!!")
-            break tryingToReadFirst
-        }
-
-        var index = 0
-        for i in 0..<3 {
-            for j in 0..<3 {
-                if let k = Int(string_table[index]) {
-                    firstTableFromUser[i][j] = k
-                    index+=1
-                } else {
-                    print("BAD INPUT!!")
-                    break tryingToReadFirst
-                }
-            }
-        }
-
-
-        print("Table Accepted")
-
-    } else {
-    print("BAD INPUT!!!")
-}
-
-print("Introduce your final table here: ", terminator:"")
-
-tryingToReadFinal:
-    if let userInput = readLine(stripNewline: true) {
-
-    var string_table = userInput.characters.split(" ").map(String.init)
-    print("Checking Table...")
-
-    if string_table.count != 9 {
-        print("BAD INPUT!!!")
-        break tryingToReadFinal
-    }
-
-    var index = 0
-    for i in 0..<3 {
-        for j in 0..<3 {
-            if let k = Int(string_table[index]) {
-                finalTableFromUser[i][j] = k
-                index+=1
-            } else {
-                print("BAD INPUT!!")
-                break tryingToReadFinal
-            }
-        }
-    }
-
-
-    print("Table Accepted")
-
-} else {
-    print("BAD INPUT!!!")
-}
-
-
-
-
-
-
-//Lista para guardar estados
+// List to Store visited States
 var visitedStates = Set<State>()
 
 var index_i = 0
 var index_j = 0
-//Find blank position
+// Find blank position for the initial state
 for i in 0..<3 {
     for j in 0..<3 {
         if firstTableFromUser[i][j]==0 {
@@ -107,7 +30,7 @@ for i in 0..<3 {
     }
 }
 
-//Create Initial State
+// Create Initial State
 let firstState = State(
     table: firstTableFromUser,
     parent: nil,
@@ -118,13 +41,10 @@ let firstState = State(
     blank_position_y: index_j
 )
 
-//Adiciona-lo à lista
-
-
 
 index_i = 0
 index_j = 0
-//Find blank position
+// Find blank position for the Final State
 for i in 0..<3 {
     for j in 0..<3 {
         if finalTableFromUser[i][j]==0 {
@@ -134,7 +54,7 @@ for i in 0..<3 {
     }
 }
 
-//Create Initial State
+// Create Final State
 let finalState = State(
     table: finalTableFromUser,
     parent: nil,
@@ -147,41 +67,21 @@ let finalState = State(
 
 
 
+// print( [[1],[2]] == [[1],[2]] )
 
+var searchType = searchScreen()
 
-print("Selecione o tipo de pesquisa")
-print("-Profundidade: 1\n-Largura: 2\n-Profundidade Iterativa: 3\n-Gulosa: 4\n-A*: 5")
-print("-----------------------------------")
-
-print("Pesquisa: ", terminator:"")
-
-let searchType = readLine()
+while( searchType == nil){
+    print()
+    print("You idiot!!! Pick a value between 1 and 5")
+    print()
+    sleep(1)
+    searchType = searchScreen()
+}
 
 let start = NSDate()
 
-//let childStates = generateChild(estado_teste)
-//
-//for state in childStates{
-//    stateList.addLink(state)
-//}
-
-//stateList.printAllKeys()
-
-chooseRoute(Int(searchType!)!)
-
-//let pathState =  stateList.deQueue()
-
-//print("--------")
-//
-//print(pathState!.depth)
-//
-//print("-------")
-
-// depthFirstSearch(stateList)
-
-// sleep(5)
-
-// print( [[1],[2]] == [[1],[2]] )
+chooseRoute(searchType!)
 
 let end = NSDate()
 
@@ -190,4 +90,3 @@ var diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit
 print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months, \(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes, \(diffDateComponents.second) seconds")
 
 
-//stateList.printAllKeys()
