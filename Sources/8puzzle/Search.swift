@@ -8,43 +8,42 @@
 
 import Foundation
 
-func depthFirstSearch() -> () {
+func depthFirstSearch() {
 
-    let stateList = Stack<State>()
+    let stateList = LinkedList<State>()
 
-    stateList.push(firstState)
+    stateList.append(firstState)
 
-    while !stateList.isEmpty() {
+    while !stateList.isEmpty {
 
-        if let state = stateList.pop() {
+        let state = stateList.removeLast()
 
-
-            if isSolution(state, finalState: finalState) {
-                print("I FOUND THE ANSWER!!!")
-                print(state)
-                print(state.depth)
-                state.printPath()
-                return
-            }
-
-            let childList = generateChild(state)
-
-            for child in childList {
-                if !visitedStates.contains(child) {
-                    stateList.push(child)
-                    visitedStates.insert(child)
-
-
-                }
-            }
-
+        if isSolution(state, finalState: finalState) {
+            print("I FOUND THE ANSWER!!!")
+            print(state)
+            print(state.depth)
+            state.printPath()
+            return
         }
+
+        let childList = generateChild(state)
+
+        for child in childList {
+            if !visitedStates.contains(child) {
+                stateList.append(child)
+                visitedStates.insert(child)
+
+
+            }
+        }
+
+
 
     }
 
 }
 
-func breadthFirstSearch() -> () {
+func breadthFirstSearch() {
 
     let stateList = LinkedList<State>()
 
@@ -68,10 +67,10 @@ func breadthFirstSearch() -> () {
         let childList = generateChild(state)
 
         for child in childList {
-                            if !visitedStates.contains(child) {
-                                stateList.append(child)
-                                visitedStates.insert(child)
-                            }
+            if !visitedStates.contains(child) {
+                stateList.append(child)
+                visitedStates.insert(child)
+            }
         }
 
 
@@ -79,7 +78,7 @@ func breadthFirstSearch() -> () {
     }
 }
 
-func iterativeDepthFirstSearch() -> () {
+func iterativeDepthFirstSearch() {
     let max_depth = 30
     var current_depth = 0
 
@@ -102,30 +101,29 @@ func iterativeDepthFirstSearch() -> () {
 
 }
 
-
 func iterativeDepthFirstSearch(maxDepth: Int) -> (State?) {
 
-    let stateList = Stack<State>()
-    stateList.push(firstState)
+    let stateList = LinkedList<State>()
+    stateList.append(firstState)
 
-    while !stateList.isEmpty() {
+    while !stateList.isEmpty {
 
-        if let state = stateList.pop() {
+        let state = stateList.removeLast()
 
-            if isSolution(state, finalState: finalState) {
-                return state
-            }
-
-            let childList = generateChild(state)
-
-            for child in childList {
-                if !visitedStates.contains(child) && child.depth <= maxDepth {
-                    stateList.push(child)
-                    visitedStates.insert(child)
-                }
-            }
-
+        if isSolution(state, finalState: finalState) {
+            return state
         }
+
+        let childList = generateChild(state)
+
+        for child in childList {
+            if !visitedStates.contains(child) && child.depth <= maxDepth {
+                stateList.append(child)
+                visitedStates.insert(child)
+            }
+        }
+
+
 
 
     }
@@ -134,10 +132,51 @@ func iterativeDepthFirstSearch(maxDepth: Int) -> (State?) {
 
 }
 
+func greedySearch(){
+
+}
+
+func aStarSearch(){
+
+}
+
+func depthLimitedDepthFirstSearch() {
+
+    let depthLimit = 20
+
+    let stateList = Stack<State>()
+
+    stateList.push(firstState)
+
+    while !stateList.isEmpty() {
+
+        if let state = stateList.pop() {
 
 
+            if isSolution(state, finalState: finalState) {
+                print("I FOUND THE ANSWER!!!")
+                print(state)
+                print(state.depth)
+                state.printPath()
+                return
+            }
+
+            let childList = generateChild(state)
+
+            for child in childList {
+                if !visitedStates.contains(child) && child.depth <= depthLimit {
+                    stateList.push(child)
+                    visitedStates.insert(child)
 
 
+                }
+            }
+
+        }
+
+    }
+
+}
 
 func generateChild(currentState: State) -> ([State]) {
     var newStates = [State]()

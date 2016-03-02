@@ -96,6 +96,7 @@ func searchScreen() -> (Int?) {
     print("3) iDFS")
     print("4) Greedy")
     print("5) A*")
+    print("6) Depth Limited DFS")
     print("-----------------------------------")
     print("Search Type: ", terminator:"")
 

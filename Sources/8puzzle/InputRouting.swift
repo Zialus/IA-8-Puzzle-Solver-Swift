@@ -25,10 +25,16 @@ func chooseRoute(searchType: Int)->() {
         iterativeDepthFirstSearch()
     case 4:
         print("You Selected: Greedy Search")
-//        n=greedySearch(table_list, visited_tables, final_table);
+
+        greedySearch()
     case 5:
         print("You Selected: A Star Search")
-//        n=aStarSearch(table_list, final_table);
+
+        aStarSearch()
+    case 6:
+        print("You Selected: Depth Limited Depth First Search")
+
+        depthLimitedDepthFirstSearch()
     default:
         print("The number you selected is not associated with any search option")
 
