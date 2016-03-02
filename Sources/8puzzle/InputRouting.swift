@@ -12,35 +12,26 @@ func chooseRoute(searchType: Int)->() {
 
     switch searchType {
     case 1:
-        print("Selecionou: Pesquisa em Profundida");
+        print("You Selected: Depth First Search")
 
-        let stateList = Stack<State>()
-
-        stateList.push(firstState)
-
-        depthFirstSearch(stateList);
+        depthFirstSearch()
     case 2:
-        print("Selecionou: Pesquisa em Largura");
+        print("You Selected: Breadth First Search")
 
-        let stateList = Queue<State>()
-
-        stateList.enQueue(firstState)
-
-        breadthFirstSearch(stateList);
+        breadthFirstSearch()
     case 3:
-        print("Selecionou: Pesquisa em Profundidade Iterativa");
+        print("You Selected: Iterative DFS")
 
-        iterativeDepthFirstSearch();
+        iterativeDepthFirstSearch()
     case 4:
-        print("Selecionou: Pesquisa Gulosa");
+        print("You Selected: Greedy Search")
 //        n=greedySearch(table_list, visited_tables, final_table);
     case 5:
-        print("Selecionou: Pesquisa A*");
+        print("You Selected: A Star Search")
 //        n=aStarSearch(table_list, final_table);
     default:
-        print("Operação invalida!\nO número que selecionou não está associado a nenhuma pesquisa");
+        print("The number you selected is not associated with any search option")
 
     }
-
 
 }

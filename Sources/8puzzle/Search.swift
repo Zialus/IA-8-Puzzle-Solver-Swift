@@ -8,24 +8,28 @@
 
 import Foundation
 
-func depthFirstSearch(stateList: Stack<State>) -> () {
+func depthFirstSearch() -> () {
+
+    let stateList = Stack<State>()
+
+    stateList.push(firstState)
 
     while !stateList.isEmpty() {
 
-        if let state = stateList.pop(){
+        if let state = stateList.pop() {
 
-            print(state)
-            
-            if isSolution(state, finalState: finalState){
+
+            if isSolution(state, finalState: finalState) {
+                print("I FOUND THE ANSWER!!!")
+                print(state)
+                print(state.depth)
+                state.printPath()
                 return
             }
 
-
-            stateList.printAllKeys()
-
             let childList = generateChild(state)
 
-            for child in childList{
+            for child in childList {
                 if !visitedStates.contains(child) {
                     stateList.push(child)
                     visitedStates.insert(child)
@@ -33,45 +37,44 @@ func depthFirstSearch(stateList: Stack<State>) -> () {
 
                 }
             }
-            
-            
-            
+
         }
-        
-        print("bom dia")
-        
+
     }
 
 }
 
-func breadthFirstSearch(stateList: Queue<State>) -> () {
-    while !stateList.isEmpty() {
+func breadthFirstSearch() -> () {
 
-        if let state = stateList.deQueue(){
+    let stateList = LinkedList<State>()
 
-//            print(state)
+    stateList.append(firstState)
 
-            if isSolution(state, finalState: finalState){
-                print("Encontrei solução!!!!")
-                print(state.depth)
-                return
-            }
+    while !stateList.isEmpty {
 
-
-            let childList = generateChild(state)
-
-            for child in childList{
-//                if !visitedStates.contains(child) {
-                    stateList.enQueue(child)
-//                    visitedStates.insert(child)
-//                }
-            }
+        let state = stateList.removeAtIndex(0)
 
 
 
+        if isSolution(state, finalState: finalState) {
+            print("I FOUND THE ANSWER!!!")
+            print(state)
+            print(state.depth)
+            state.printPath()
+            return
         }
 
-//        print("bom dia")
+
+        let childList = generateChild(state)
+
+        for child in childList {
+                            if !visitedStates.contains(child) {
+                                stateList.append(child)
+                                visitedStates.insert(child)
+                            }
+        }
+
+
 
     }
 }
@@ -80,61 +83,55 @@ func iterativeDepthFirstSearch() -> () {
     let max_depth = 30
     var current_depth = 0
 
-    while current_depth < max_depth{
+    while current_depth < max_depth {
         print("Current Depth is \(current_depth)")
         visitedStates.removeAll()
-        iterativeDepthFirstSearch(current_depth)
+
+        let possiblyAnAnswer = iterativeDepthFirstSearch(current_depth)
+
+        if let answer = possiblyAnAnswer {
+            print("I FOUND THE ANSWER!!!")
+            print(answer)
+            print(answer.depth)
+            answer.printPath()
+            return
+        }
+
         current_depth+=1
     }
 
 }
 
 
-func iterativeDepthFirstSearch(maxDepth: Int) -> () {
+func iterativeDepthFirstSearch(maxDepth: Int) -> (State?) {
 
     let stateList = Stack<State>()
-
-
-//    stateList.printAllKeys()
-//    print("KAKAKAKAKAKA")
-
     stateList.push(firstState)
-
-//    stateList.printAllKeys()
 
     while !stateList.isEmpty() {
 
-        if let state = stateList.pop(){
-//            print("LALALA")
-//            print(state)
+        if let state = stateList.pop() {
 
-            if isSolution(state, finalState: finalState){
-                print("ah e tal")
-                return
+            if isSolution(state, finalState: finalState) {
+                return state
             }
-
-
-//            stateList.printAllKeys()
 
             let childList = generateChild(state)
 
-            for child in childList{
-                if !visitedStates.contains(child) && child.depth < maxDepth {
+            for child in childList {
+                if !visitedStates.contains(child) && child.depth <= maxDepth {
                     stateList.push(child)
                     visitedStates.insert(child)
-
-
                 }
             }
-            
-            
-            
+
         }
-        
-//        print("bom dia")
+
 
     }
-    
+
+    return nil
+
 }
 
 
@@ -150,7 +147,7 @@ func generateChild(currentState: State) -> ([State]) {
     let y = currentState.blank_position_y
 
     //move célula em branco para a esquerda
-    if(y>0){
+    if y>0 {
         //tabela auxiliar que começa como sendo copia da original
         var aux_table = currentState.table
         //move célula
@@ -162,7 +159,7 @@ func generateChild(currentState: State) -> ([State]) {
         newStates.append(auxState)
     }
     //move célula em branco para a direita
-    if(y<2){
+    if y<2 {
         //tabela auxiliar que começa como sendo copia da original
         var aux_table = currentState.table
         //move célula
@@ -175,7 +172,7 @@ func generateChild(currentState: State) -> ([State]) {
     }
 
     //move célula em branco para cima
-    if(x>0){
+    if x>0 {
         //tabela auxiliar que começa como sendo copia da original
         var aux_table = currentState.table
         //move célula
@@ -188,7 +185,7 @@ func generateChild(currentState: State) -> ([State]) {
     }
 
     //move célula em branco para baixo
-    if(x<2){
+    if x<2 {
         //tabela auxiliar que começa como sendo copia da original
         var aux_table = currentState.table
         //move célula
@@ -208,20 +205,20 @@ func isSolution(someState: State, finalState: State) -> (Bool) {
     return someState == finalState
 }
 
-func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int){
+func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int) {
     var distances = Array(count: 9, repeatedValue: 0)
-    for i in 0..<3{
-        for j in 0..<3{
+    for i in 0..<3 {
+        for j in 0..<3 {
             distances[currentTable[i][j]] = abs(distances[currentTable[i][j]]-((i+1)+(j+1)))
             distances[finalTable[i][j]] = abs(distances[finalTable[i][j]]-((i+1)+(j+1)))
         }
     }
-
+    
     var totalDistance = 0
-
-    for i in 1..<9{
+    
+    for i in 1..<9 {
         totalDistance+=distances[i]
     }
-
+    
     return totalDistance
 }

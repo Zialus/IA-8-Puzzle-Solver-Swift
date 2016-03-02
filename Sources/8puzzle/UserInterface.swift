@@ -8,7 +8,7 @@
 
 import Foundation
 
-func setupScreen()->(){
+func setupScreen() -> () {
 
     print("\t ---------------------- ")
     print("\t|IT'S JOGO DOS 8 TIME!!| ")
@@ -80,7 +80,7 @@ func setupScreen()->(){
             }
         }
         print("Table Accepted")
-        
+
     } else {
         print("BAD INPUT!!!")
     }
@@ -88,7 +88,7 @@ func setupScreen()->(){
 
 }
 
-func searchScreen()->(Int?){
+func searchScreen() -> (Int?) {
 
     print("Selecione o tipo de pesquisa")
     print("1) DFS")
@@ -99,16 +99,15 @@ func searchScreen()->(Int?){
     print("-----------------------------------")
     print("Search Type: ", terminator:"")
 
-    if let searchType = readLine(){
-        if let searchType = Int(searchType){
+    if let searchType = readLine() {
+        if let searchType = Int(searchType) {
             return searchType
-        }
-        else{
+        } else {
             return nil
         }
-    }
-    else{
+
+    } else {
         return nil
     }
-    
+
 }

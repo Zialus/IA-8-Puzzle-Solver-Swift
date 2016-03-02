@@ -71,7 +71,7 @@ let finalState = State(
 
 var searchType = searchScreen()
 
-while( searchType == nil){
+while searchType == nil {
     print()
     print("You idiot!!! Pick a value between 1 and 5")
     print()
@@ -85,8 +85,9 @@ chooseRoute(searchType!)
 
 let end = NSDate()
 
-var diffDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second], fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
+var diffDateComponents = NSCalendar.currentCalendar().components(
+    [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
+    NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
+    fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
 
-print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months, \(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes, \(diffDateComponents.second) seconds")
-
-
+print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds")
