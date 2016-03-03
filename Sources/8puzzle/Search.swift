@@ -83,75 +83,18 @@ func iterativeDepthFirstSearch() {
     var current_depth = 0
 
     while current_depth < max_depth {
-        print("Current Depth is \(current_depth)")
+        print("Current Max Depth is \(current_depth)")
         visitedStates.removeAll()
 
-        let possiblyAnAnswer = iterativeDepthFirstSearch(current_depth)
-
-        if let answer = possiblyAnAnswer {
-            print("I FOUND THE ANSWER!!!")
-            print(answer)
-            print(answer.depth)
-            answer.printPath()
-            return
-        }
-
-        current_depth+=1
-    }
-
-}
-
-func iterativeDepthFirstSearch(maxDepth: Int) -> (State?) {
-
-    let stateList = LinkedList<State>()
-    stateList.append(firstState)
-
-    while !stateList.isEmpty {
-
-        let state = stateList.removeLast()
-
-        if isSolution(state, finalState: finalState) {
-            return state
-        }
-
-        let childList = generateChild(state)
-
-        for child in childList {
-            if !visitedStates.contains(child) && child.depth <= maxDepth {
-                stateList.append(child)
-                visitedStates.insert(child)
-            }
-        }
 
 
 
+        let stateList = LinkedList<State>()
+        stateList.append(firstState)
 
-    }
+        while !stateList.isEmpty {
 
-    return nil
-
-}
-
-func greedySearch(){
-
-}
-
-func aStarSearch(){
-
-}
-
-func depthLimitedDepthFirstSearch() {
-
-    let depthLimit = 20
-
-    let stateList = Stack<State>()
-
-    stateList.push(firstState)
-
-    while !stateList.isEmpty() {
-
-        if let state = stateList.pop() {
-
+            let state = stateList.removeLast()
 
             if isSolution(state, finalState: finalState) {
                 print("I FOUND THE ANSWER!!!")
@@ -164,15 +107,183 @@ func depthLimitedDepthFirstSearch() {
             let childList = generateChild(state)
 
             for child in childList {
-                if !visitedStates.contains(child) && child.depth <= depthLimit {
-                    stateList.push(child)
+                if !visitedStates.contains(child) && child.depth <= current_depth {
+                    stateList.append(child)
                     visitedStates.insert(child)
+                }
+            }
 
 
+
+
+        }
+
+
+        current_depth+=1
+    }
+
+}
+
+
+func greedySort (lhs: State, rhs: State) -> Bool {
+
+    return getDistanceTo(lhs.table, finalTable: finalState.table) < getDistanceTo(rhs.table, finalTable: finalState.table)
+
+}
+
+func aStartSort (lhs: State, rhs: State) -> Bool {
+
+    return (getDistanceTo(lhs.table, finalTable: finalState.table) + lhs.depth)   <   ( getDistanceTo(rhs.table, finalTable: finalState.table) + rhs.depth )
+
+}
+
+
+func IDASTAR() {
+    let max_cost = 30
+    var current_cost = 0
+
+    while current_cost < max_cost {
+        print("Current Max Cost is \(current_cost)")
+        visitedStates.removeAll()
+
+        var stateList = PriorityQueue<State>(sort: aStartSort)
+        stateList.enqueue(firstState)
+
+        while !stateList.isEmpty {
+
+            if let state = stateList.dequeue(){
+
+                if isSolution(state, finalState: finalState) {
+                    print("I FOUND THE ANSWER!!!")
+                    print(state)
+                    print(state.depth)
+                    state.printPath()
+                    return
+                }
+
+                let childList = generateChild(state)
+
+                for child in childList {
+                    if !visitedStates.contains(child) && child.depth <= current_cost {
+                        stateList.enqueue(child)
+                        visitedStates.insert(child)
+                    }
+                }
+
+
+
+            }
+        }
+
+
+        current_cost+=1
+    }
+
+}
+
+func greedySearch(){
+
+    var stateList = PriorityQueue<State>(sort: greedySort)
+
+    stateList.enqueue(firstState)
+
+    while !stateList.isEmpty {
+
+        if let state = stateList.dequeue(){
+
+
+            if isSolution(state, finalState: finalState) {
+                print("I FOUND THE ANSWER!!!")
+                print(state)
+                print(state.depth)
+                state.printPath()
+                return
+            }
+
+
+            let childList = generateChild(state)
+
+            for child in childList {
+                if !visitedStates.contains(child) {
+                    stateList.enqueue(child)
+                    visitedStates.insert(child)
                 }
             }
 
         }
+
+    }
+
+}
+
+func aStarSearch(){
+
+    var stateList = PriorityQueue<State>(sort: aStartSort)
+
+    stateList.enqueue(firstState)
+
+    while !stateList.isEmpty {
+
+        if let state = stateList.dequeue(){
+
+
+            if isSolution(state, finalState: finalState) {
+                print("I FOUND THE ANSWER!!!")
+                print(state)
+                print(state.depth)
+                state.printPath()
+                return
+            }
+
+
+            let childList = generateChild(state)
+
+            for child in childList {
+                if !visitedStates.contains(child) {
+                    stateList.enqueue(child)
+                    visitedStates.insert(child)
+                }
+            }
+
+        }
+
+    }
+
+}
+
+func depthLimitedDepthFirstSearch() {
+
+    let depthLimit = 35
+
+    let stateList = LinkedList<State>()
+
+    stateList.append(firstState)
+
+    while !stateList.isEmpty {
+
+        let state = stateList.removeLast()
+
+
+        if isSolution(state, finalState: finalState) {
+            print("I FOUND THE ANSWER!!!")
+            print(state)
+            print(state.depth)
+            state.printPath()
+            return
+        }
+
+        let childList = generateChild(state)
+
+        for child in childList {
+            if !visitedStates.contains(child) && child.depth <= depthLimit {
+                stateList.append(child)
+                visitedStates.insert(child)
+
+
+            }
+        }
+
+
 
     }
 
@@ -239,6 +350,46 @@ func generateChild(currentState: State) -> ([State]) {
 
     return newStates
 }
+
+func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
+
+    var initialTableParity = 0
+    var finalTableParity = 0
+
+    for row in 0..<3 {
+        for col in 0..<3 {
+            let value = initialTable[row][col]
+
+            for i in row..<3 {
+                for j in col..<3 {
+                    let nextValue = initialTable[i][j]
+                    if nextValue < value && nextValue != 0 {
+                        initialTableParity+=1
+                    }
+                }
+            }
+        }
+    }
+
+    for row in 0..<3 {
+        for col in 0..<3 {
+            let value = finalTable[row][col]
+
+            for i in row..<3 {
+                for j in col..<3 {
+                    let nextValue = initialTable[i][j]
+                    if nextValue < value && nextValue != 0 {
+                        finalTableParity+=1
+                    }
+                }
+            }
+        }
+    }
+    
+    return initialTableParity%2 == finalTableParity%2
+    
+}
+
 
 func isSolution(someState: State, finalState: State) -> (Bool) {
     return someState == finalState

@@ -35,6 +35,11 @@ func chooseRoute(searchType: Int)->() {
         print("You Selected: Depth Limited Depth First Search")
 
         depthLimitedDepthFirstSearch()
+
+    case 7:
+        print("You Selected: IDA*")
+
+        IDASTAR()
     default:
         print("The number you selected is not associated with any search option")
 

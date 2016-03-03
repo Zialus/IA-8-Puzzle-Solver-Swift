@@ -90,6 +90,14 @@ func setupScreen() -> () {
 
 func searchScreen() -> (Int?) {
 
+
+    if(hasSolution(firstState.table, finalTable: finalState.table)){
+    }
+    else{
+        print("THERE IS NO SOLUTION FOR THE PROVIDED TABLES")
+        exit(0)
+    }
+
     print("Selecione o tipo de pesquisa")
     print("1) DFS")
     print("2) BFS")
@@ -97,6 +105,7 @@ func searchScreen() -> (Int?) {
     print("4) Greedy")
     print("5) A*")
     print("6) Depth Limited DFS")
+    print("7) IDA*")
     print("-----------------------------------")
     print("Search Type: ", terminator:"")
 

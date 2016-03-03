@@ -65,7 +65,13 @@ let finalState = State(
     blank_position_y: index_j
 )
 
-
+print("###########")
+firstState.prettyPrint()
+print("-----------")
+finalState.prettyPrint()
+print("~~~~~")
+print(getDistanceTo(firstState.table, finalTable: finalState.table))
+print("-----------")
 
 // print( [[1],[2]] == [[1],[2]] )
 
