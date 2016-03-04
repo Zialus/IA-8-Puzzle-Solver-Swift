@@ -65,13 +65,14 @@ let finalState = State(
     blank_position_y: index_j
 )
 
-print("###########")
+print()
+print("Here is your initial Table:")
 firstState.prettyPrint()
-print("-----------")
+print("Here is your final Table")
 finalState.prettyPrint()
-print("~~~~~")
-print(getDistanceTo(firstState.table, finalTable: finalState.table))
-print("-----------")
+print("The Manhantan Distance is:")
+print(getCostTo(firstState.table))
+print()
 
 // print( [[1],[2]] == [[1],[2]] )
 
@@ -79,7 +80,7 @@ var searchType = searchScreen()
 
 while searchType == nil {
     print()
-    print("You idiot!!! Pick a value between 1 and 5")
+    print("You idiot!!! Pick a value between 1 and 7")
     print()
     sleep(1)
     searchType = searchScreen()

@@ -18,9 +18,8 @@ class State {
     let blank_position_x: Int
     let blank_position_y: Int
     var description: String {
-//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"  // withheld until i find a better way to Hash a State
-        return "{ Tabela: " + String(table) + " }"
-
+        return "{ Tabela: " + String(table) + "}"
+//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
     }
     var hashValue: Int {
         return description.hashValue
@@ -38,7 +37,7 @@ class State {
 
     func printPath() {
         self.prettyPrint()
-        print("------")
+        print()
         if let move = move{
             print(move)
             print("------")
@@ -50,12 +49,15 @@ class State {
     }
 
     func prettyPrint(){
+        print("+-----+")
         for i in 0..<3 {
-            for j in 0..<3 {
+            print("|",terminator:"")
+            for j in 0..<2 {
                 print(table[i][j],terminator:" ")
             }
-            print()
+            print(table[i][2],terminator: "|\n")
         }
+        print("+-----+")
     }
 
 }

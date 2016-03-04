@@ -127,13 +127,13 @@ func iterativeDepthFirstSearch() {
 
 func greedySort (lhs: State, rhs: State) -> Bool {
 
-    return getDistanceTo(lhs.table, finalTable: finalState.table) < getDistanceTo(rhs.table, finalTable: finalState.table)
+    return lhs.cost < rhs.cost
 
 }
 
 func aStartSort (lhs: State, rhs: State) -> Bool {
 
-    return (getDistanceTo(lhs.table, finalTable: finalState.table) + lhs.depth)   <   ( getDistanceTo(rhs.table, finalTable: finalState.table) + rhs.depth )
+    return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
 
 }
 
@@ -164,7 +164,7 @@ func IDASTAR() {
                 let childList = generateChild(state)
 
                 for child in childList {
-                    if !visitedStates.contains(child) && child.depth <= current_cost {
+                    if !visitedStates.contains(child) && (child.depth + child.cost <= current_cost) {
                         stateList.enqueue(child)
                         visitedStates.insert(child)
                     }
@@ -304,7 +304,7 @@ func generateChild(currentState: State) -> ([State]) {
         aux_table[x][y]=aux_table[x][y-1]
         aux_table[x][y-1]=0
         //adiciona tabela à lista
-        let auxState = State(table: aux_table, parent: currentState, move: "L", depth: currentState.depth+1, cost: 0,
+        let auxState = State(table: aux_table, parent: currentState, move: "L", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y-1)
         newStates.append(auxState)
     }
@@ -316,7 +316,7 @@ func generateChild(currentState: State) -> ([State]) {
         aux_table[x][y]=aux_table[x][y+1]
         aux_table[x][y+1]=0
         //adiciona tabela à lista
-        let auxState = State(table: aux_table, parent: currentState, move: "R", depth: currentState.depth+1, cost: 0,
+        let auxState = State(table: aux_table, parent: currentState, move: "R", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y+1)
         newStates.append(auxState)
     }
@@ -329,7 +329,7 @@ func generateChild(currentState: State) -> ([State]) {
         aux_table[x][y]=aux_table[x-1][y]
         aux_table[x-1][y]=0
         //adiciona tabela à lista
-        let auxState = State(table: aux_table, parent: currentState, move: "U", depth: currentState.depth+1, cost: 0,
+        let auxState = State(table: aux_table, parent: currentState, move: "U", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x-1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
     }
@@ -342,7 +342,7 @@ func generateChild(currentState: State) -> ([State]) {
         aux_table[x][y]=aux_table[x+1][y]
         aux_table[x+1][y]=0
         //adiciona tabela à lista
-        let auxState = State(table: aux_table, parent: currentState, move: "D", depth: currentState.depth+1, cost: 0,
+        let auxState = State(table: aux_table, parent: currentState, move: "D", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x+1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
     }
@@ -395,20 +395,39 @@ func isSolution(someState: State, finalState: State) -> (Bool) {
     return someState == finalState
 }
 
-func getDistanceTo(currentTable: [[Int]], finalTable: [[Int]]) -> (Int) {
-    var distances = Array(count: 9, repeatedValue: 0)
+
+func findCoordinates(number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
     for i in 0..<3 {
         for j in 0..<3 {
-            distances[currentTable[i][j]] = abs(distances[currentTable[i][j]]-((i+1)+(j+1)))
-            distances[finalTable[i][j]] = abs(distances[finalTable[i][j]]-((i+1)+(j+1)))
+            if matrix[i][j]==number {
+                return (i,j)
+            }
         }
     }
-    
-    var totalDistance = 0
-    
-    for i in 1..<9 {
-        totalDistance+=distances[i]
+    return nil
+}
+
+func manhantanDistance(n:Int,currentTable: [[Int]] ) -> (Int)? {
+
+    if let (x1,y1) = findCoordinates(n, matrix: currentTable), (x2,y2) = findCoordinates(1, matrix: finalState.table){
+        return abs(x1-x2) + abs(y1-y2)
     }
+
+    // If the coordinates can't be found the distance can't be calculated
+    return nil
+}
+
+
+
+func getCostTo(currentTable: [[Int]]) -> (Int) {
+
+    var totalCost = 0
+
+    for i in 0...8 {
+        let distance = manhantanDistance(i, currentTable: currentTable)!
+        totalCost+=distance
+    }
+
     
-    return totalDistance
+    return totalCost
 }
