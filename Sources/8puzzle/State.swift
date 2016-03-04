@@ -72,3 +72,26 @@ func == (lhs: State, rhs: State) -> Bool {
     let areEqual = lhs.table == rhs.table
     return areEqual
 }
+
+
+//WEIRD LINUX STUFF TO FIGURE OUT LATER
+
+//func == (lhs: State, rhs: State) -> Bool {
+//
+//    if lhs.table.count == rhs.table.count{
+//        for i in 0..<3{
+//            for j in 0..<3{
+//                if lhs.table[i][j] != rhs.table[i][j]{
+//                    return false
+//                }
+//
+//            }
+//        }
+//        return true
+//    }
+//    return false
+//}
+//
+
+
+
