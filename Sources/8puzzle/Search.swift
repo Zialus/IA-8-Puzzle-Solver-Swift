@@ -8,7 +8,7 @@
 
 import Foundation
 
-func depthFirstSearch() {
+func depthFirstSearch() -> (State) {
 
     let stateList = LinkedList<State>()
 
@@ -19,11 +19,7 @@ func depthFirstSearch() {
         let state = stateList.removeLast()
 
         if isSolution(state, finalState: finalState) {
-            print("I FOUND THE ANSWER!!!")
-            print(state)
-            print(state.depth)
-            state.printPath()
-            return
+            return state
         }
 
         let childList = generateChild(state)
@@ -41,9 +37,12 @@ func depthFirstSearch() {
 
     }
 
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
+
 }
 
-func breadthFirstSearch() {
+func breadthFirstSearch() -> (State) {
 
     let stateList = LinkedList<State>()
 
@@ -56,11 +55,7 @@ func breadthFirstSearch() {
 
 
         if isSolution(state, finalState: finalState) {
-            print("I FOUND THE ANSWER!!!")
-            print(state)
-            print(state.depth)
-            state.printPath()
-            return
+            return state
         }
 
 
@@ -76,17 +71,18 @@ func breadthFirstSearch() {
 
 
     }
+
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
 }
 
-func iterativeDepthFirstSearch() {
+func iterativeDepthFirstSearch() -> (State) {
     let max_depth = 30
     var current_depth = 0
 
     while current_depth < max_depth {
         print("Current Max Depth is \(current_depth)")
         visitedStates.removeAll()
-
-
 
 
         let stateList = LinkedList<State>()
@@ -97,11 +93,7 @@ func iterativeDepthFirstSearch() {
             let state = stateList.removeLast()
 
             if isSolution(state, finalState: finalState) {
-                print("I FOUND THE ANSWER!!!")
-                print(state)
-                print(state.depth)
-                state.printPath()
-                return
+                return state
             }
 
             let childList = generateChild(state)
@@ -122,66 +114,11 @@ func iterativeDepthFirstSearch() {
         current_depth+=1
     }
 
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
 }
 
-
-func greedySort (lhs: State, rhs: State) -> Bool {
-
-    return lhs.cost < rhs.cost
-
-}
-
-func aStartSort (lhs: State, rhs: State) -> Bool {
-
-    return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
-
-}
-
-
-func IDASTAR() {
-    let max_cost = 30
-    var current_cost = 0
-
-    while current_cost < max_cost {
-        print("Current Max Cost is \(current_cost)")
-        visitedStates.removeAll()
-
-        var stateList = PriorityQueue<State>(sort: aStartSort)
-        stateList.enqueue(firstState)
-
-        while !stateList.isEmpty {
-
-            if let state = stateList.dequeue(){
-
-                if isSolution(state, finalState: finalState) {
-                    print("I FOUND THE ANSWER!!!")
-                    print(state)
-                    print(state.depth)
-                    state.printPath()
-                    return
-                }
-
-                let childList = generateChild(state)
-
-                for child in childList {
-                    if !visitedStates.contains(child) && (child.depth + child.cost <= current_cost) {
-                        stateList.enqueue(child)
-                        visitedStates.insert(child)
-                    }
-                }
-
-
-
-            }
-        }
-
-
-        current_cost+=1
-    }
-
-}
-
-func greedySearch(){
+func greedySearch() -> (State){
 
     var stateList = PriorityQueue<State>(sort: greedySort)
 
@@ -193,11 +130,7 @@ func greedySearch(){
 
 
             if isSolution(state, finalState: finalState) {
-                print("I FOUND THE ANSWER!!!")
-                print(state)
-                print(state.depth)
-                state.printPath()
-                return
+                return state
             }
 
 
@@ -214,9 +147,12 @@ func greedySearch(){
 
     }
 
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
+
 }
 
-func aStarSearch(){
+func aStarSearch() -> (State){
 
     var stateList = PriorityQueue<State>(sort: aStartSort)
 
@@ -228,11 +164,7 @@ func aStarSearch(){
 
 
             if isSolution(state, finalState: finalState) {
-                print("I FOUND THE ANSWER!!!")
-                print(state)
-                print(state.depth)
-                state.printPath()
-                return
+                return state
             }
 
 
@@ -249,9 +181,12 @@ func aStarSearch(){
 
     }
 
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
+
 }
 
-func depthLimitedDepthFirstSearch() {
+func depthLimitedDepthFirstSearch() -> (State) {
 
     let depthLimit = 35
 
@@ -265,11 +200,7 @@ func depthLimitedDepthFirstSearch() {
 
 
         if isSolution(state, finalState: finalState) {
-            print("I FOUND THE ANSWER!!!")
-            print(state)
-            print(state.depth)
-            state.printPath()
-            return
+            return state
         }
 
         let childList = generateChild(state)
@@ -287,6 +218,63 @@ func depthLimitedDepthFirstSearch() {
 
     }
 
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
+
+}
+
+func IDASTAR() -> (State) {
+    let max_cost = 30
+    var current_cost = 0
+
+    while current_cost < max_cost {
+        print("Current Max Cost is \(current_cost)")
+        visitedStates.removeAll()
+
+        var stateList = PriorityQueue<State>(sort: aStartSort)
+        stateList.enqueue(firstState)
+
+        while !stateList.isEmpty {
+
+            if let state = stateList.dequeue(){
+
+                if isSolution(state, finalState: finalState) {
+                    return state
+                }
+
+                let childList = generateChild(state)
+
+                for child in childList {
+                    if !visitedStates.contains(child) && (child.depth + child.cost <= current_cost) {
+                        stateList.enqueue(child)
+                        visitedStates.insert(child)
+                    }
+                }
+                
+                
+                
+            }
+        }
+        
+        
+        current_cost+=1
+    }
+
+    //TOTAL HACK I KNOW BUT I DONT CARE
+    return firstState
+
+}
+
+func greedySort (lhs: State, rhs: State) -> Bool {
+
+    return lhs.cost < rhs.cost
+
+}
+
+func aStartSort (lhs: State, rhs: State) -> Bool {
+
+    return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
+    
 }
 
 func generateChild(currentState: State) -> ([State]) {
@@ -390,11 +378,9 @@ func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
     
 }
 
-
 func isSolution(someState: State, finalState: State) -> (Bool) {
     return someState == finalState
 }
-
 
 func findCoordinates(number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
     for i in 0..<3 {
@@ -416,8 +402,6 @@ func manhantanDistance(n:Int,currentTable: [[Int]] ) -> (Int)? {
     // If the coordinates can't be found the distance can't be calculated
     return nil
 }
-
-
 
 func getCostTo(currentTable: [[Int]]) -> (Int) {
 

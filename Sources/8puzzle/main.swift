@@ -86,15 +86,7 @@ while searchType == nil {
     searchType = searchScreen()
 }
 
-let start = NSDate()
 
 chooseRoute(searchType!)
 
-let end = NSDate()
 
-var diffDateComponents = NSCalendar.currentCalendar().components(
-    [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day,
-    NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second],
-    fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
-
-print("The difference between dates is: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days, \(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds")
