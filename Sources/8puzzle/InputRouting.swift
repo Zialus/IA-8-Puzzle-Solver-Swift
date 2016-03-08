@@ -44,6 +44,7 @@ func chooseRoute(searchType: Int)->() {
 
 
     print("I FOUND THE ANSWER!!!")
+    print()
 
     let end = NSDate()
 
@@ -53,9 +54,10 @@ func chooseRoute(searchType: Int)->() {
 
     print("The search took: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days,\(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds, \(diffDateComponents.nanosecond) nanoseconds")
 
-
     print(answer)
-    print(answer.depth)
+
+    print("Number of moves: \(answer.depth)")
+
     answer.printPath()
 
 }

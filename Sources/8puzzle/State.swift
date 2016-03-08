@@ -18,8 +18,9 @@ class State {
     let blank_position_x: Int
     let blank_position_y: Int
     var description: String {
-        return "{ Tabela: " + String(table) + "}"
+//        return "{ Tabela: " + String(table) + "}"
 //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
+        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + " }"
     }
     var hashValue: Int {
         return description.hashValue
@@ -39,8 +40,8 @@ class State {
         self.prettyPrint()
         print()
         if let move = move{
-            print(move)
-            print("------")
+            print("Move: \(move)")
+            print()
             if let parent = parent{
                 parent.printPath()
             }
