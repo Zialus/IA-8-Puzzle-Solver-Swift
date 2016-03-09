@@ -74,7 +74,8 @@ print("The Manhantan Distance is:")
 print(getCostTo(firstState.table))
 print()
 
-// print( [[1],[2]] == [[1],[2]] )
+var passedByNodes = 0
+var generatedNodes = 0
 
 var searchType = searchScreen()
 

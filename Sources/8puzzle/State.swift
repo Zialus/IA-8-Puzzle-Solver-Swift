@@ -17,14 +17,6 @@ class State {
     let cost: Int
     let blank_position_x: Int
     let blank_position_y: Int
-    var description: String {
-//        return "{ Tabela: " + String(table) + "}"
-//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
-        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + " }"
-    }
-    var hashValue: Int {
-        return description.hashValue
-    }
 
     init(table: [[Int]], parent: State?, move: Character?, depth: Int, cost: Int, blank_position_x: Int, blank_position_y: Int) {
         self.table = table
@@ -63,36 +55,47 @@ class State {
 
 }
 
-extension State: CustomStringConvertible {}
+extension State: CustomStringConvertible {
 
-extension State: Hashable {}
+    var description: String {
+//                return "{ Tabela: " + String(table) + "}"
+        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
+        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
+        return " \(String(table))\(String(depth)) "
+    }
+}
+
+extension State: Hashable {
+
+    var hashValue: Int {
+        return description.hashValue
+    }
+
+}
 
 extension State: Equatable {}
 
 func == (lhs: State, rhs: State) -> Bool {
-    let areEqual = lhs.table == rhs.table
-    return areEqual
+    return lhs.table == rhs.table && lhs.depth == rhs.depth
+//    return compareStates(lhs, rhs)
 }
 
+func compareStates(lhs: State, rhs: State) -> Bool {
+    if lhs.table.count != rhs.table.count{
+        return false
+    }
 
-//WEIRD LINUX STUFF TO FIGURE OUT LATER
-
-//func == (lhs: State, rhs: State) -> Bool {
-//
-//    if lhs.table.count == rhs.table.count{
-//        for i in 0..<3{
-//            for j in 0..<3{
-//                if lhs.table[i][j] != rhs.table[i][j]{
-//                    return false
-//                }
-//
-//            }
-//        }
-//        return true
-//    }
-//    return false
-//}
-//
-
-
-
+    for i in 0..<3{
+        for j in 0..<3{
+            if lhs.table[i][j] != rhs.table[i][j]{
+                return false
+            }
+        }
+    }
+    
+    if lhs.depth != rhs.depth {
+        return false
+    }
+    
+    return true
+}

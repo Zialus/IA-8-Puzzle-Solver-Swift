@@ -28,8 +28,8 @@ func depthFirstSearch() -> (State) {
             if !visitedStates.contains(child) {
                 stateList.append(child)
                 visitedStates.insert(child)
-
-
+                passedByNodes+=1
+                if passedByNodes % 1000 == 0 { print (passedByNodes) }
             }
         }
 
@@ -65,6 +65,8 @@ func breadthFirstSearch() -> (State) {
             if !visitedStates.contains(child) {
                 stateList.append(child)
                 visitedStates.insert(child)
+                passedByNodes+=1
+                if passedByNodes % 1000 == 0 { print (passedByNodes) }
             }
         }
 
@@ -102,6 +104,8 @@ func iterativeDepthFirstSearch() -> (State) {
                 if !visitedStates.contains(child) && child.depth <= current_depth {
                     stateList.append(child)
                     visitedStates.insert(child)
+                    passedByNodes+=1
+                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
                 }
             }
 
@@ -140,6 +144,8 @@ func greedySearch() -> (State){
                 if !visitedStates.contains(child) {
                     stateList.enqueue(child)
                     visitedStates.insert(child)
+                    passedByNodes+=1
+                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
                 }
             }
 
@@ -162,11 +168,9 @@ func aStarSearch() -> (State){
 
         if let state = stateList.dequeue(){
 
-
             if isSolution(state, finalState: finalState) {
                 return state
             }
-
 
             let childList = generateChild(state)
 
@@ -174,6 +178,8 @@ func aStarSearch() -> (State){
                 if !visitedStates.contains(child) {
                     stateList.enqueue(child)
                     visitedStates.insert(child)
+                    passedByNodes+=1
+                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
                 }
             }
 
@@ -209,8 +215,8 @@ func depthLimitedDepthFirstSearch() -> (State) {
             if !visitedStates.contains(child) && child.depth <= depthLimit {
                 stateList.append(child)
                 visitedStates.insert(child)
-
-
+                passedByNodes+=1
+                if passedByNodes % 1000 == 0 { print (passedByNodes) }
             }
         }
 
@@ -295,6 +301,7 @@ func generateChild(currentState: State) -> ([State]) {
         let auxState = State(table: aux_table, parent: currentState, move: "L", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y-1)
         newStates.append(auxState)
+        generatedNodes+=1
     }
     //move célula em branco para a direita
     if y<2 {
@@ -307,6 +314,7 @@ func generateChild(currentState: State) -> ([State]) {
         let auxState = State(table: aux_table, parent: currentState, move: "R", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y+1)
         newStates.append(auxState)
+        generatedNodes+=1
     }
 
     //move célula em branco para cima
@@ -320,6 +328,7 @@ func generateChild(currentState: State) -> ([State]) {
         let auxState = State(table: aux_table, parent: currentState, move: "U", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x-1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
+        generatedNodes+=1
     }
 
     //move célula em branco para baixo
@@ -333,6 +342,7 @@ func generateChild(currentState: State) -> ([State]) {
         let auxState = State(table: aux_table, parent: currentState, move: "D", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x+1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
+        generatedNodes+=1
     }
 
 
@@ -379,7 +389,7 @@ func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
 }
 
 func isSolution(someState: State, finalState: State) -> (Bool) {
-    return someState == finalState
+    return someState.table == finalState.table
 }
 
 func findCoordinates(number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
@@ -407,7 +417,7 @@ func getCostTo(currentTable: [[Int]]) -> (Int) {
 
     var totalCost = 0
 
-    for i in 0...8 {
+    for i in 1...8 {
         let distance = manhantanDistance(i, currentTable: currentTable)!
         totalCost+=distance
     }

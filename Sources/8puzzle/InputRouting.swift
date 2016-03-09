@@ -58,6 +58,10 @@ func chooseRoute(searchType: Int)->() {
 
     print("Number of moves: \(answer.depth)")
 
+    print("Number of nodes generated: \(generatedNodes)")
+
+    print("Number of nodes that actually got used: \(passedByNodes)")
+
     answer.printPath()
 
 }
