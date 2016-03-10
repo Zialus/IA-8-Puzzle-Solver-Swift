@@ -79,7 +79,7 @@ func breadthFirstSearch() -> (State) {
 }
 
 func iterativeDepthFirstSearch() -> (State) {
-    let max_depth = 30
+    let max_depth = 31
     var current_depth = 0
 
     while current_depth < max_depth {
@@ -109,14 +109,12 @@ func iterativeDepthFirstSearch() -> (State) {
                 }
             }
 
-
-
-
         }
-
 
         current_depth+=1
     }
+
+    print("You went past the max depth!")
 
     //TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
@@ -194,7 +192,7 @@ func aStarSearch() -> (State){
 
 func depthLimitedDepthFirstSearch() -> (State) {
 
-    let depthLimit = 35
+    let depthLimit = 31
 
     let stateList = LinkedList<State>()
 
