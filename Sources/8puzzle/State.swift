@@ -63,10 +63,20 @@ class State {
 
 extension State: CustomStringConvertible {
 
+    var description: String {
+        return "{ Tabela: " + String(table) + "}"
+        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
+        //                return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
+        //        return " \(String(table))\(String(depth)) "
+    }
 
 }
 
 extension State: Hashable {
+
+    var hashValue: Int {
+        return description.hashValue
+    }
 
 }
 
@@ -78,11 +88,12 @@ func == (lhs: State, rhs: State) -> Bool {
 //    return compareStates(lhs, rhs)
 }
 
-func < (lhs: State, rhs: State) -> Bool {
-    return lhs.depth == rhs.depth
+//func < (lhs: State, rhs: State) -> Bool {
+//    return lhs.depth == rhs.depth
     //        && lhs.depth == rhs.depth
     //    return compareStates(lhs, rhs)
-}
+//}
+
 //func compareStates(lhs: State, rhs: State) -> Bool {
 //    if lhs.table.count != rhs.table.count{
 //        return false
@@ -95,10 +106,10 @@ func < (lhs: State, rhs: State) -> Bool {
 //            }
 //        }
 //    }
-//    
+//
 //    if lhs.depth != rhs.depth {
 //        return false
 //    }
-//    
+//
 //    return true
 //}
