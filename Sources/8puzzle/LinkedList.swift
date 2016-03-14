@@ -27,14 +27,14 @@ class LinkedList<T: Equatable> {
     var count: Int = 0
     var head: Node<T> = Node<T>()
     var tail: Node<T> = Node<T>()
-    
+
     init() {
     }
-    
+
     func isEmpty() -> Bool {
         return self.count == 0
     }
-    
+
     func addItem(value: T) {
         let node = Node<T>(value: value)
         if self.isEmpty() {
@@ -47,9 +47,9 @@ class LinkedList<T: Equatable> {
         }
         self.count += 1
     }
-    
+
     //############ indexOf METHOD FOR TEST ################
-    
+
     func indexOf (itemToFind: T) -> Int{
         var index = 0
         if (self.count > 0){                         // -if position exists
@@ -64,13 +64,13 @@ class LinkedList<T: Equatable> {
         }
         return -1
     }
-    
+
     //############ removeLast METHOD FOR TEST ################
 
-    
+
     func removeLast() -> T?{
         if count == 0{
-            return (0 as! T)
+            return nil
         }
         if (count == 1){
             let value = head.value
@@ -85,10 +85,10 @@ class LinkedList<T: Equatable> {
         self.count -= 1
         return value
     }
-    
+
     //############ add METHOD FOR TEST ################
 
-    
+
     func add(value: T, position: Int){
         let node = Node<T>(value: value)
         if (self.count > position && position >= 0) {            // -if position exists
@@ -110,7 +110,7 @@ class LinkedList<T: Equatable> {
         }
     }
 
-    
+
     func insertItem(value: T, position: Int){
         let node = Node<T>(value: value)
         if (self.count > position) {            // --if position exists
@@ -131,7 +131,7 @@ class LinkedList<T: Equatable> {
             self.count += 1
         }
     }
-    
+
     func removeItem(position: Int) {
         if (self.count > position){                             // --if position exists
             if (self.count != 1){
@@ -158,7 +158,7 @@ class LinkedList<T: Equatable> {
             self.count -= 1
         }
     }
-    
+
     func replaceItem(itemToReplace: T, position: Int) {
         if (self.count > position){                         // --if position exists
             var currentNode = self.head
@@ -172,9 +172,9 @@ class LinkedList<T: Equatable> {
             }
         }
     }
-    
-    
-    
+
+
+
     func getItemAt(position: Int) -> T? {
         if (self.count > position){                         // --if position exists
             var currentNode = self.head
@@ -191,7 +191,7 @@ class LinkedList<T: Equatable> {
         }
 
     }
-    
+
     func printList() {
         var output: String = "["
         var currentNode: Node? = self.head
@@ -205,7 +205,7 @@ class LinkedList<T: Equatable> {
         output += "]"
         print(output)
     }
-    
+
     func printInverse() {
         var output: String = "["
         var currentNode: Node? = self.tail

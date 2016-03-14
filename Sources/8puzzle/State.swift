@@ -29,7 +29,7 @@ class State {
     }
 
     func printPath() {
-        var nodeToPrint:State? = self
+        var nodeToPrint: State? = self
 
         while nodeToPrint != nil {
 
@@ -64,10 +64,10 @@ class State {
 extension State: CustomStringConvertible {
 
     var description: String {
-        return "{ Tabela: " + String(table) + "}"
-        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
-        //                return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
-        //        return " \(String(table))\(String(depth)) "
+//        return "{ Tabela: " + String(table) + "}"
+//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
+//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
+        return "\(String(table)) \(String(depth)) "
     }
 
 }
@@ -83,8 +83,7 @@ extension State: Hashable {
 extension State: Equatable {}
 
 func == (lhs: State, rhs: State) -> Bool {
-    return lhs.table == rhs.table
-//        && lhs.depth == rhs.depth
+    return lhs.table == rhs.table  && lhs.depth == rhs.depth
 //    return compareStates(lhs, rhs)
 }
 
