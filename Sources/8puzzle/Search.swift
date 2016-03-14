@@ -12,11 +12,11 @@ func depthFirstSearch() -> (State) {
 
     let stateList = LinkedList<State>()
 
-    stateList.append(firstState)
+    stateList.addItem(firstState)
 
-    while !stateList.isEmpty {
+    while !stateList.isEmpty() {
 
-        let state = stateList.removeLast()
+        let state = stateList.removeLast()!
 
         if isSolution(state, finalState: finalState) {
             return state
@@ -26,7 +26,7 @@ func depthFirstSearch() -> (State) {
 
         for child in childList {
             if !visitedStates.contains(child) {
-                stateList.append(child)
+                stateList.addItem(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
                 if passedByNodes % 1000 == 0 { print (passedByNodes) }
@@ -46,12 +46,12 @@ func breadthFirstSearch() -> (State) {
 
     let stateList = LinkedList<State>()
 
-    stateList.append(firstState)
+    stateList.addItem(firstState)
 
-    while !stateList.isEmpty {
+    while !stateList.isEmpty() {
 
-        let state = stateList.removeAtIndex(0)
-
+        let state = stateList.getItemAt(0)!
+        stateList.removeItem(0)
 
 
         if isSolution(state, finalState: finalState) {
@@ -63,7 +63,7 @@ func breadthFirstSearch() -> (State) {
 
         for child in childList {
             if !visitedStates.contains(child) {
-                stateList.append(child)
+                stateList.addItem(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
                 if passedByNodes % 1000 == 0 { print (passedByNodes) }
@@ -88,11 +88,11 @@ func iterativeDepthFirstSearch() -> (State) {
 
 
         let stateList = LinkedList<State>()
-        stateList.append(firstState)
+        stateList.addItem(firstState)
 
-        while !stateList.isEmpty {
+        while !stateList.isEmpty() {
 
-            let state = stateList.removeLast()
+            let state = stateList.removeLast()!
 
             if isSolution(state, finalState: finalState) {
                 return state
@@ -102,7 +102,7 @@ func iterativeDepthFirstSearch() -> (State) {
 
             for child in childList {
                 if !visitedStates.contains(child) && child.depth <= current_depth {
-                    stateList.append(child)
+                    stateList.addItem(child)
                     visitedStates.insert(child)
                     passedByNodes+=1
                     if passedByNodes % 1000 == 0 { print (passedByNodes) }
@@ -196,12 +196,11 @@ func depthLimitedDepthFirstSearch() -> (State) {
 
     let stateList = LinkedList<State>()
 
-    stateList.append(firstState)
+    stateList.addItem(firstState)
 
-    while !stateList.isEmpty {
+    while !stateList.isEmpty() {
 
-        let state = stateList.removeLast()
-
+        let state = stateList.removeLast()!
 
         if isSolution(state, finalState: finalState) {
             return state
@@ -211,7 +210,7 @@ func depthLimitedDepthFirstSearch() -> (State) {
 
         for child in childList {
             if !visitedStates.contains(child) && child.depth <= depthLimit {
-                stateList.append(child)
+                stateList.addItem(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
                 if passedByNodes % 1000 == 0 { print (passedByNodes) }

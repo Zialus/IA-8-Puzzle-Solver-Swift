@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Node<T:NSObject> {
+class Node<T: Equatable> {
     var value: T? = nil
     var next: Node<T>? = nil
     var prev: Node<T>? = nil
@@ -23,7 +23,7 @@ class Node<T:NSObject> {
 
 import Foundation
 
-class LinkedList<T:NSObject> {
+class LinkedList<T: Equatable> {
     var count: Int = 0
     var head: Node<T> = Node<T>()
     var tail: Node<T> = Node<T>()
