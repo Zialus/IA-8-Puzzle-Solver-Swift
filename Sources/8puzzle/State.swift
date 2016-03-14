@@ -28,40 +28,33 @@ class State {
         self.cost = cost
     }
 
-    var description: String {
-//        return "{ Tabela: " + String(table) + "}"
-        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
-                return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
-        //        return " \(String(table))\(String(depth)) "
-    }
-
-
-    var hashValue: Int {
-        return description.hashValue
-    }
-
-
     func printPath() {
-        self.prettyPrint()
-        print()
-        if let move = move{
-            print("Move: \(move)")
+        var nodeToPrint:State? = self
+
+        while nodeToPrint != nil {
+
+            nodeToPrint!.prettyPrint()
             print()
-            if let parent = parent{
-                parent.printPath()
+
+            if let move = nodeToPrint!.move {
+                print("Move: \(move)")
+                print()
             }
+
+            nodeToPrint = nodeToPrint!.parent
 
         }
+
     }
 
-    func prettyPrint(){
+    func prettyPrint() {
         print("+-----+")
         for i in 0..<3 {
-            print("|",terminator:"")
+            print("|", terminator:"")
             for j in 0..<2 {
-                print(table[i][j],terminator:" ")
+                print(table[i][j], terminator:" ")
             }
-            print(table[i][2],terminator: "|\n")
+            print(table[i][2], terminator: "|\n")
         }
         print("+-----+")
     }
