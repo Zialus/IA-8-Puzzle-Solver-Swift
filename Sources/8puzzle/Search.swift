@@ -357,9 +357,9 @@ func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
             let value = initialTable[row][col]
 
             for i in row..<3 {
-                for j in col..<3 {
+                for j in 0..<3 {
                     let nextValue = initialTable[i][j]
-                    if nextValue < value && nextValue != 0 {
+                    if (nextValue < value) && (nextValue != 0) && ( j>col || i > row ) {
                         initialTableParity+=1
                     }
                 }
@@ -372,16 +372,16 @@ func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
             let value = finalTable[row][col]
 
             for i in row..<3 {
-                for j in col..<3 {
-                    let nextValue = initialTable[i][j]
-                    if nextValue < value && nextValue != 0 {
+                for j in 0..<3 {
+                    let nextValue = finalTable[i][j]
+                    if (nextValue < value) && (nextValue != 0) && ( j>col || i > row ) {
                         finalTableParity+=1
                     }
                 }
             }
         }
     }
-    
+
     return initialTableParity%2 == finalTableParity%2
     
 }
@@ -415,7 +415,7 @@ func getCostTo(currentTable: [[Int]]) -> (Int) {
 
     var totalCost = 0
 
-    for i in 1...8 {
+    for i in 0...8 {
         let distance = manhantanDistance(i, currentTable: currentTable)!
         totalCost+=distance
     }
