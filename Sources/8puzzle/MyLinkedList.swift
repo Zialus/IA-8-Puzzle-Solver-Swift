@@ -8,7 +8,22 @@
 
 import Foundation
 
-class MyLinkedList<T:NSObject> {
+class Node<T:NSObject> {
+    var value: T? = nil
+    var next: Node<T>? = nil
+    var prev: Node<T>? = nil
+
+    init() {
+    }
+
+    init(value: T) {
+        self.value = value
+    }
+}
+
+import Foundation
+
+class LinkedList<T:NSObject> {
     var count: Int = 0
     var head: Node<T> = Node<T>()
     var tail: Node<T> = Node<T>()
@@ -21,7 +36,7 @@ class MyLinkedList<T:NSObject> {
     }
     
     func addItem(value: T) {
-        var node = Node<T>(value: value)
+        let node = Node<T>(value: value)
         if self.isEmpty() {
             self.head = node
             self.tail = node
@@ -30,7 +45,7 @@ class MyLinkedList<T:NSObject> {
             self.tail.next = node
             self.tail = node
         }
-        self.count++
+        self.count += 1
     }
     
     //############ indexOf METHOD FOR TEST ################
@@ -43,7 +58,7 @@ class MyLinkedList<T:NSObject> {
                 if currentNode!.value! == itemToFind{
                     return index
                 }
-                index++
+                index += 1
                 currentNode = currentNode!.next
             }
         }
@@ -55,19 +70,19 @@ class MyLinkedList<T:NSObject> {
     
     func removeLast() -> T?{
         if count == 0{
-            return 0 as! T
+            return (0 as! T)
         }
         if (count == 1){
             let value = head.value
             head = Node<T>()
             tail = Node<T>()
-            self.count--
+            self.count -= 1
             return value
         }
         let value = self.tail.value
         self.tail.prev!.next = tail.next
         self.tail = tail.prev!
-        self.count--
+        self.count -= 1
         return value
     }
     
@@ -91,14 +106,14 @@ class MyLinkedList<T:NSObject> {
                 currentNode.prev!.next = node
                 currentNode.prev = node
             }
-            self.count++
+            self.count += 1
         }
     }
 
     
     func insertItem(value: T, position: Int){
         let node = Node<T>(value: value)
-        if (self.count > position) {            // -if position exists
+        if (self.count > position) {            // --if position exists
             if (position == 0){                 // --if position is head
                 node.next = self.head
                 self.head.prev = node
@@ -113,12 +128,12 @@ class MyLinkedList<T:NSObject> {
                 currentNode.prev!.next = node
                 currentNode.prev = node
             }
-            self.count++
+            self.count += 1
         }
     }
     
     func removeItem(position: Int) {
-        if (self.count > position){                             // -if position exists
+        if (self.count > position){                             // --if position exists
             if (self.count != 1){
                 if (position == 0){                             // --if position is head
                     self.head.next!.prev = head.prev
@@ -136,16 +151,16 @@ class MyLinkedList<T:NSObject> {
                     currentNode.next!.prev = currentNode.prev
                     currentNode.prev!.next = currentNode.next
                 }
-            } else {                                            // -if last node
+            } else {                                            // --if last node
                 head = Node<T>()
                 tail = Node<T>()
             }
-            self.count--
+            self.count -= 1
         }
     }
     
     func replaceItem(itemToReplace: T, position: Int) {
-        if (self.count > position){                         // -if position exists
+        if (self.count > position){                         // --if position exists
             var currentNode = self.head
             if (position == 0){                             // --if position is head
                 currentNode.value = itemToReplace
@@ -161,7 +176,7 @@ class MyLinkedList<T:NSObject> {
     
     
     func getItemAt(position: Int) -> T? {
-        if (self.count > position){                         // -if position exists
+        if (self.count > position){                         // --if position exists
             var currentNode = self.head
             if (position == 0){                             // --if position is head
                 return currentNode.value
