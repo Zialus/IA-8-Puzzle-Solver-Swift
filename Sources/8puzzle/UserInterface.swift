@@ -91,9 +91,8 @@ func setupScreen() -> () {
 func searchScreen() -> (Int?) {
 
 
-    if(hasSolution(firstState.table, finalTable: finalState.table)){
-    }
-    else{
+    if(hasSolution(firstState.table, finalTable: finalState.table)) {
+    } else {
         print("THERE IS NO SOLUTION FOR THE PROVIDED TABLES")
         exit(0)
     }

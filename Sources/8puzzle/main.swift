@@ -70,8 +70,7 @@ print("Here is your initial Table:")
 firstState.prettyPrint()
 print("Here is your final Table")
 finalState.prettyPrint()
-print("The Manhantan Distance is:")
-print(getCostTo(firstState.table))
+print("The Manhantan Distance is: \(getCostTo(firstState.table)) ")
 print()
 
 var passedByNodes = 0
