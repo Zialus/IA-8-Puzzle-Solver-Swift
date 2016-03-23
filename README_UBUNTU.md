@@ -3,16 +3,16 @@
 ## How to install swift
 
 ```bash
-wget https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a-ubuntu14.04.tar.gz
-tar xzf swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a-ubuntu14.04.tar.gz
-cd swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a-ubuntu14.04
-sudo rsync -aviP usr/ /usr/ --remove-source-files
-```
 
-## Dependencies
+sudo apt-get install clang-3.6 
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 100
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
 
-```bash
-sudo apt-get install clang libicu-dev
+wget -qO- http://dev.iachieved.it/iachievedit.gpg.key | sudo apt-key add -
+echo "deb http://iachievedit-repos.s3.amazonaws.com/ trusty main" | sudo tee --append /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install swift-2.2
+
 ```
 
 ## How to install the 8-puzzle-solver
