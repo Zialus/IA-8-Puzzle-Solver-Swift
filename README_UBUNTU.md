@@ -2,9 +2,9 @@
 
 ## How to install swift
 
-```bash
+``` bash
 
-sudo apt-get install clang-3.6 
+sudo apt-get install clang-3.6
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 100
 sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
 
@@ -17,14 +17,18 @@ sudo apt-get install swift-2.2
 
 ## How to install the 8-puzzle-solver
 
-```bash
+``` bash
+
 git clone https://github.com/Zialus/8-puzzle-swift.git
 cd 8-puzzle-swift
 swift build
+
 ```
 
 ## How to run it
 
-```bash
+``` bash
+
 ./.build/debug/8puzzle
+
 ```
