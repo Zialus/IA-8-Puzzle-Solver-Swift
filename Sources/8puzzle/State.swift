@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class State {
     let table: [[Int]]
     let parent: State?
@@ -26,6 +25,10 @@ class State {
         self.blank_position_x = blank_position_x
         self.blank_position_y = blank_position_y
         self.cost = cost
+    }
+
+    deinit {
+//        print("\(table) is being deinitialized")
     }
 
     func printPath() {
@@ -64,10 +67,10 @@ class State {
 extension State: CustomStringConvertible {
 
     var description: String {
-//        return "{ Tabela: " + String(table) + "}"
-//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
-//        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
-        return "\(String(table)) \(String(depth)) "
+        return "{ Tabela: " + String(table) + "}"
+        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
+        //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
+        //        return "\(String(table)) \(String(depth)) "
     }
 
 }
@@ -83,32 +86,31 @@ extension State: Hashable {
 extension State: Equatable {}
 
 func == (lhs: State, rhs: State) -> Bool {
-    return lhs.table == rhs.table  && lhs.depth == rhs.depth
-//    return compareStates(lhs, rhs)
+    return lhs.table == rhs.table
 }
 
-//func < (lhs: State, rhs: State) -> Bool {
-//    return lhs.depth == rhs.depth
-    //        && lhs.depth == rhs.depth
-    //    return compareStates(lhs, rhs)
-//}
 
-//func compareStates(lhs: State, rhs: State) -> Bool {
-//    if lhs.table.count != rhs.table.count{
-//        return false
-//    }
-//
-//    for i in 0..<3{
-//        for j in 0..<3{
-//            if lhs.table[i][j] != rhs.table[i][j]{
-//                return false
-//            }
-//        }
-//    }
-//
-//    if lhs.depth != rhs.depth {
-//        return false
-//    }
-//
-//    return true
-//}
+func tableAndDepthEquality (lhs: State, rhs: State) -> Bool {
+    return lhs.table == rhs.table && lhs.depth == rhs.depth
+}
+
+
+// Makes multi-dementional Arrays Equatable
+func == (lhs: [[Int]], rhs: [[Int]]) -> Bool{
+
+    if lhs.count != rhs.count{
+        return false
+    }
+
+    let count = lhs.count
+
+    for i in 0..<count{
+        if lhs[i] != rhs[i] {
+            return false
+        }
+    }
+    
+    return true
+}
+
+
