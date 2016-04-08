@@ -2,6 +2,8 @@
 
 A swift implementation of 7 different algorithms to solve the 8-puzzle game.
 
+This program was tested on `Fedora 23` and `Ubuntu 14.04` with `swift 2.2`
+
 ## Instructions for Fedora 23
 
 ### How to install swift (and its dependencies)
