@@ -9,5 +9,5 @@
 import PackageDescription
 
 let package = Package(
-    name: "8puzzle"
+    name: "8PuzzleSolver"
 )
