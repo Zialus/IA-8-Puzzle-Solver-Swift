@@ -10,9 +10,9 @@ import Foundation
 
 func setupScreen() -> () {
 
-    print("\t ---------------------- ")
-    print("\t|IT'S JOGO DOS 8 TIME!!| ")
-    print("\t ---------------------- ")
+    print("\t +-----------------------+ ")
+    print("\t | IT'S JOGO DOS 8 TIME! | ")
+    print("\t +-----------------------+ ")
     print("")
     print("----Input Example----")
     print("")

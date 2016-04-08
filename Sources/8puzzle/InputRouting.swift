@@ -47,12 +47,17 @@ func chooseRoute(searchType: Int)->() {
     print()
 
     let end = NSDate()
+//
+//    let diffDateComponents = NSCalendar.currentCalendar().components(
+//        [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second, NSCalendarUnit.Nanosecond],
+//        fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
+//
+//    print("The search took: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days,\(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds, \(diffDateComponents.nanosecond) nanoseconds")
 
-    let diffDateComponents = NSCalendar.currentCalendar().components(
-        [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second, NSCalendarUnit.Nanosecond],
-        fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
+    // Difference in seconds
+    let timeInterval: Double = end.timeIntervalSinceDate(start)
 
-    print("The search took: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days,\(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds, \(diffDateComponents.nanosecond) nanoseconds")
+    print("Elapsed Time: \(timeInterval) seconds");
 
     print(answer)
 
@@ -63,5 +68,25 @@ func chooseRoute(searchType: Int)->() {
     print("Number of nodes that actually got used: \(passedByNodes)")
 
     answer.printPath()
+
+//    let file = "file.txt" //this is the file. we will write to and read from it
+//
+//    let text = "some text" //just a text
+//
+//    if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
+//        let path = dir.stringByAppendingPathComponent(file);
+//
+//        //writing
+//        do {
+//            try text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
+//        }
+//        catch {/* error handling here */}
+//
+//        //reading
+//        do {
+//            let text2 = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+//        }
+//        catch {/* error handling here */}
+//    }
 
 }

@@ -67,7 +67,7 @@ class State {
 extension State: CustomStringConvertible {
 
     var description: String {
-        return "{ Tabela: " + String(table) + "}"
+        return "{ Tabela:  \(table) } "
         //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + ", Cost: " + String(cost) + "}"
         //        return "{ Tabela: " + String(table) + ", Depth: " + String(depth) + "}"
         //        return "\(String(table)) \(String(depth)) "
