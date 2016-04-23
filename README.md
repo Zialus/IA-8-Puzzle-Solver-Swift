@@ -1,5 +1,7 @@
 # 8-Puzzle-Solver-Swift
 
+[![Build Status](https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift.svg?branch=master)](https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift)
+
 A swift implementation of 7 different algorithms to solve the 8-puzzle game.
 
 This program was tested on `Fedora 23` and `Ubuntu 14.04` with `swift 2.2`
