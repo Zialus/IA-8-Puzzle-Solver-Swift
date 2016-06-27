@@ -33,7 +33,7 @@ public struct PriorityQueue<T> {
     return heap.peek()
   }
 
-  public mutating func enqueue(element: T) {
+  public mutating func enqueue(_ element: T) {
     heap.insert(element)
   }
 
@@ -52,7 +52,7 @@ public struct PriorityQueue<T> {
 }
 
 extension PriorityQueue where T: Equatable {
-  public func indexOf(element: T) -> Int? {
+  public func indexOf(_ element: T) -> Int? {
     return heap.indexOf(element)
   }
 }

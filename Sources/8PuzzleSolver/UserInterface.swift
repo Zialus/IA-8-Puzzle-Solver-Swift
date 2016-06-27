@@ -26,9 +26,9 @@ func setupScreen() -> () {
 
     print("Introduce your initial table here: ", terminator:"")
     tryingToReadFirst:
-        if let userInput = readLine(stripNewline: true) {
+        if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.characters.split(" ").map(String.init)
+        var string_table = userInput.characters.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {
@@ -57,9 +57,9 @@ func setupScreen() -> () {
 
     print("Introduce your final table here: ", terminator:"")
     tryingToReadFinal:
-        if let userInput = readLine(stripNewline: true) {
+        if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.characters.split(" ").map(String.init)
+        var string_table = userInput.characters.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {

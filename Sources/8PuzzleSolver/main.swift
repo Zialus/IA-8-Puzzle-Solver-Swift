@@ -9,8 +9,8 @@
 import Foundation
 
 // [][] ---> 2D Array for matrices representing the 8-puzzle-game-board
-var firstTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
-var finalTableFromUser = Array(count: 3, repeatedValue: Array(count: 3, repeatedValue: 0))
+var firstTableFromUser = Array(repeating: Array(repeating: 0, count: 3), count: 3)
+var finalTableFromUser = Array(repeating: Array(repeating: 0, count: 3), count: 3)
 
 // Display the Setup Screen
 setupScreen()

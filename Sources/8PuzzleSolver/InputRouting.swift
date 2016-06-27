@@ -8,9 +8,9 @@
 
 import Foundation
 
-func chooseRoute(searchType: Int)->() {
+func chooseRoute(_ searchType: Int)->() {
 
-    let start = NSDate()
+    let start = Date()
 
     //TOTAL HACK I KNOW BUT I DONT CARE
     var answer = firstState
@@ -46,7 +46,7 @@ func chooseRoute(searchType: Int)->() {
     print("I FOUND THE ANSWER!!!")
     print()
 
-    let end = NSDate()
+    let end = Date()
 //
 //    let diffDateComponents = NSCalendar.currentCalendar().components(
 //        [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second, NSCalendarUnit.Nanosecond],
@@ -55,7 +55,7 @@ func chooseRoute(searchType: Int)->() {
 //    print("The search took: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days,\(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds, \(diffDateComponents.nanosecond) nanoseconds")
 
     // Difference in seconds
-    let timeInterval: Double = end.timeIntervalSinceDate(start)
+    let timeInterval: Double = end.timeIntervalSince(start)
 
     print("Elapsed Time: \(timeInterval) seconds");
 

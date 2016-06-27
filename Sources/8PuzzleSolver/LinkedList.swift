@@ -35,7 +35,7 @@ class LinkedList<T: Equatable> {
         return self.count == 0
     }
 
-    func addItem(value: T) {
+    func addItem(_ value: T) {
         let node = Node<T>(value: value)
         if self.isEmpty() {
             self.head = node
@@ -50,7 +50,7 @@ class LinkedList<T: Equatable> {
 
     //############ indexOf METHOD FOR TEST ################
 
-    func indexOf (itemToFind: T) -> Int{
+    func indexOf (_ itemToFind: T) -> Int{
         var index = 0
         if (self.count > 0){                         // -if position exists
             var currentNode: Node? = self.head
@@ -89,7 +89,7 @@ class LinkedList<T: Equatable> {
     //############ add METHOD FOR TEST ################
 
 
-    func add(value: T, position: Int){
+    func add(_ value: T, position: Int){
         let node = Node<T>(value: value)
         if (self.count > position && position >= 0) {            // -if position exists
             if (position == 0){                 // --if position is head
@@ -111,7 +111,7 @@ class LinkedList<T: Equatable> {
     }
 
 
-    func insertItem(value: T, position: Int){
+    func insertItem(_ value: T, position: Int){
         let node = Node<T>(value: value)
         if (self.count > position) {            // --if position exists
             if (position == 0){                 // --if position is head
@@ -132,7 +132,7 @@ class LinkedList<T: Equatable> {
         }
     }
 
-    func removeItem(position: Int) {
+    func removeItem(_ position: Int) {
         if (self.count > position){                             // --if position exists
             if (self.count != 1){
                 if (position == 0){                             // --if position is head
@@ -159,7 +159,7 @@ class LinkedList<T: Equatable> {
         }
     }
 
-    func replaceItem(itemToReplace: T, position: Int) {
+    func replaceItem(_ itemToReplace: T, position: Int) {
         if (self.count > position){                         // --if position exists
             var currentNode = self.head
             if (position == 0){                             // --if position is head
@@ -175,7 +175,7 @@ class LinkedList<T: Equatable> {
 
 
 
-    func getItemAt(position: Int) -> T? {
+    func getItemAt(_ position: Int) -> T? {
         if (self.count > position){                         // --if position exists
             var currentNode = self.head
             if (position == 0){                             // --if position is head

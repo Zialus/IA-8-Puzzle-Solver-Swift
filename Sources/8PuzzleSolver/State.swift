@@ -90,7 +90,7 @@ func == (lhs: State, rhs: State) -> Bool {
 }
 
 
-func tableAndDepthEquality (lhs: State, rhs: State) -> Bool {
+func tableAndDepthEquality (_ lhs: State, rhs: State) -> Bool {
     return lhs.table == rhs.table && lhs.depth == rhs.depth
 }
 

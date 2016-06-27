@@ -268,19 +268,19 @@ func IDASTAR() -> (State) {
 
 }
 
-func greedySort (lhs: State, rhs: State) -> Bool {
+func greedySort (_ lhs: State, rhs: State) -> Bool {
 
     return lhs.cost < rhs.cost
 
 }
 
-func aStartSort (lhs: State, rhs: State) -> Bool {
+func aStartSort (_ lhs: State, rhs: State) -> Bool {
 
     return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
     
 }
 
-func generateChild(currentState: State) -> ([State]) {
+func generateChild(_ currentState: State) -> ([State]) {
     var newStates = [State]()
 
     //Coordenates of blank position
@@ -346,7 +346,7 @@ func generateChild(currentState: State) -> ([State]) {
     return newStates
 }
 
-func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
+func hasSolution(_ initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
 
     var initialTableParity = 0
     var finalTableParity = 0
@@ -385,11 +385,11 @@ func hasSolution(initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
     
 }
 
-func isSolution(someState: State, finalState: State) -> (Bool) {
+func isSolution(_ someState: State, finalState: State) -> (Bool) {
     return someState.table == finalState.table
 }
 
-func findCoordinates(number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
+func findCoordinates(_ number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
     for i in 0..<3 {
         for j in 0..<3 {
             if matrix[i][j]==number {
@@ -400,7 +400,7 @@ func findCoordinates(number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
     return nil
 }
 
-func manhantanDistance(n:Int,currentTable: [[Int]] ) -> (Int)? {
+func manhantanDistance(_ n:Int,currentTable: [[Int]] ) -> (Int)? {
 
     if let (x1,y1) = findCoordinates(n, matrix: currentTable), (x2,y2) = findCoordinates(n, matrix: finalState.table){
         return abs(x1-x2) + abs(y1-y2)
@@ -410,7 +410,7 @@ func manhantanDistance(n:Int,currentTable: [[Int]] ) -> (Int)? {
     return nil
 }
 
-func getCostTo(currentTable: [[Int]]) -> (Int) {
+func getCostTo(_ currentTable: [[Int]]) -> (Int) {
 
     var totalCost = 0
 
