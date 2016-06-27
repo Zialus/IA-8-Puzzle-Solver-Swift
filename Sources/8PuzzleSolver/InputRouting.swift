@@ -10,7 +10,8 @@ import Foundation
 
 func chooseRoute(_ searchType: Int)->() {
 
-    let start = Date()
+    // let star = Date()
+    let start = NSDate()
 
     //TOTAL HACK I KNOW BUT I DONT CARE
     var answer = firstState
@@ -46,16 +47,11 @@ func chooseRoute(_ searchType: Int)->() {
     print("I FOUND THE ANSWER!!!")
     print()
 
-    let end = Date()
-//
-//    let diffDateComponents = NSCalendar.currentCalendar().components(
-//        [NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second, NSCalendarUnit.Nanosecond],
-//        fromDate: start, toDate: end, options: NSCalendarOptions.init(rawValue: 0))
-//
-//    print("The search took: \(diffDateComponents.year) years, \(diffDateComponents.month) months,\(diffDateComponents.day) days,\(diffDateComponents.hour) hours, \(diffDateComponents.minute) minutes,\(diffDateComponents.second) seconds, \(diffDateComponents.nanosecond) nanoseconds")
+    // THIS IS A SILLY TEMP FIX
+    // let end = Date()
+    // let timeInterval: Double = end.timeIntervalSince(start)
 
-    // Difference in seconds
-    let timeInterval: Double = end.timeIntervalSince(start)
+    let timeInterval = abs(start.timeIntervalSinceNow)
 
     print("Elapsed Time: \(timeInterval) seconds");
 
@@ -66,27 +62,9 @@ func chooseRoute(_ searchType: Int)->() {
     print("Number of nodes generated: \(generatedNodes)")
 
     print("Number of nodes that actually got used: \(passedByNodes)")
-
+    
     answer.printPath()
-
-//    let file = "file.txt" //this is the file. we will write to and read from it
-//
-//    let text = "some text" //just a text
-//
-//    if let dir : NSString = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true).first {
-//        let path = dir.stringByAppendingPathComponent(file);
-//
-//        //writing
-//        do {
-//            try text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding)
-//        }
-//        catch {/* error handling here */}
-//
-//        //reading
-//        do {
-//            let text2 = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-//        }
-//        catch {/* error handling here */}
-//    }
-
+    
+    
+    
 }
