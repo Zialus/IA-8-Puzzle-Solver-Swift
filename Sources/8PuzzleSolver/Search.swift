@@ -402,7 +402,7 @@ func findCoordinates(_ number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
 
 func manhantanDistance(_ n:Int,currentTable: [[Int]] ) -> (Int)? {
 
-    if let (x1,y1) = findCoordinates(n, matrix: currentTable), (x2,y2) = findCoordinates(n, matrix: finalState.table){
+    if let (x1,y1) = findCoordinates(n, matrix: currentTable), let (x2,y2) = findCoordinates(n, matrix: finalState.table){
         return abs(x1-x2) + abs(y1-y2)
     }
 

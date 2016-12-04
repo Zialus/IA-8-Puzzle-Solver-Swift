@@ -196,7 +196,7 @@ class LinkedList<T: Equatable> {
         var output: String = "["
         var currentNode: Node? = self.head
         while (currentNode != nil) {
-            output += String(currentNode!.value)
+            output += String(describing: currentNode!.value)
             currentNode = currentNode!.next
             if (currentNode != nil){                // If statement is for avoid "," sign at the end.
                 output += ", "
@@ -210,7 +210,7 @@ class LinkedList<T: Equatable> {
         var output: String = "["
         var currentNode: Node? = self.tail
         while (currentNode != nil) {
-            output += String(currentNode!.value)
+            output += String(describing: currentNode!.value)
             currentNode = currentNode!.prev
             if (currentNode != nil){                // If statement is for avoid "," sign at the end.
                 output += ", "

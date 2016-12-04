@@ -10,8 +10,7 @@ import Foundation
 
 func chooseRoute(_ searchType: Int)->() {
 
-    // let star = Date()
-    let start = NSDate()
+    let start = Date()
 
     //TOTAL HACK I KNOW BUT I DONT CARE
     var answer = firstState
@@ -47,11 +46,8 @@ func chooseRoute(_ searchType: Int)->() {
     print("I FOUND THE ANSWER!!!")
     print()
 
-    // THIS IS A SILLY TEMP FIX
-    // let end = Date()
-    // let timeInterval: Double = end.timeIntervalSince(start)
-
-    let timeInterval = abs(start.timeIntervalSinceNow)
+    let end = Date()
+    let timeInterval: Double = end.timeIntervalSince(start)
 
     print("Elapsed Time: \(timeInterval) seconds");
 
