@@ -1,7 +1,7 @@
 all:
-	swift build
-	mv ./.build/debug/8PuzzleSolver .
+	swift build -Xswiftc -O -c release
+	mv ./.build/release/8PuzzleSolver .
 
 clean:
+	swift build --clean
 	if [ -f ./8PuzzleSolver ]; then rm ./8PuzzleSolver; fi
-	if [ -d ./.build/ ]; then rm -rf ./.build/; fi
