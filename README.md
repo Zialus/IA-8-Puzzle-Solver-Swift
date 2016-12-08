@@ -1,49 +1,55 @@
 # 8-Puzzle-Solver-Swift
 
-[![Build Status](https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift.svg?branch=master)](https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift)
+A `swift` implementation of 7 different algorithms to solve the 8-puzzle game.
 
-A swift implementation of 7 different algorithms to solve the 8-puzzle game.
+[![Swift][swift-badge]][swift-url]
+[![Platform][platform-badge]][platform-url]
+[![Travis][travis-badge]][travis-url]
 
-This program was tested on `Fedora 23` and `Ubuntu 14.04` with `swift 2.2`
+[swift-badge]: https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat
+[swift-url]: https://swift.org
+[platform-badge]: https://img.shields.io/badge/Platforms-OS%20X%20--%20Linux-lightgray.svg?style=flat
+[platform-url]: https://swift.org
+[travis-badge]: https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift.svg?branch=master
+[travis-url]: https://travis-ci.org/Zialus/8-Puzzle-Solver-Swift
 
-## Instructions for Fedora 23
+This program was tested on `MacOS 10.12 Sierra`, `Fedora 25`, and `Ubuntu 14.04`. All running `swift 3.0`.
+
+## Instructions for Fedora 25
 
 ### How to install swift (and its dependencies)
 
 ``` bash
-curl https://github.com/Zialus/swift-rpm/releases/download/swift-3.0-DEVELOPMENTSNAPSHOT20160301a/swift-3.0-DEVELOPMENTSNAPSHOT20160301a.x86_64.rpm -O -L
 sudo dnf install libbsd python libicu clang
-sudo rpm -Uvh swift-3.0-DEVELOPMENTSNAPSHOT20160301a.x86_64.rpm
+curl https://github.com/Zialus/swift-rpm/releases/download/swift-3.0-RELEASE/swift-3.0-RELEASE3.0.x86_64.rpm -O -L
+sudo rpm -Uvh swift-3.0-RELEASE.x86_64.rpm
 ```
 
-## Instructions for Ubuntu 14.04
+## Instructions for Ubuntu 14.04/15.10/16.04
 
 ### How to install swift (and its dependencies)
 
 ``` bash
-sudo apt-get install clang-3.6
-sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 100
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 100
-
-wget -qO- http://dev.iachieved.it/iachievedit.gpg.key | sudo apt-key add -
-echo "deb http://iachievedit-repos.s3.amazonaws.com/ trusty main" | sudo tee --append /etc/apt/sources.list
-sudo apt-get update
-sudo apt-get install swift-2.2
+sudo apt-get install clang
+git clone https://github.com/kylef/swiftenv.git ~/.swiftenv
+echo 'export SWIFTENV_ROOT="$HOME/.swiftenv"' >> ~/.bash_profile
+echo 'export PATH="$SWIFTENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(swiftenv init -)"' >> ~/.bash_profile
+. ~/.bash_profile
+swiftenv install 3.0
 ```
 
 ## General Instructions
 
 ### How to compile
 
-To compile just run the makefile with the command:
+To compile just run the makefile, by executing the following command on the terminal:
 
 ``` text
 make
 ```
 
-on the terminal
-
-### How to run it
+### How to run
 
 ``` bash
 ./8PuzzleSolver
