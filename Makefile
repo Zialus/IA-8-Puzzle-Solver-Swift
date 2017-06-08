@@ -3,7 +3,7 @@ all:
 	mv ./.build/release/8PuzzleSolver .
 
 clean:
-	swift build --clean
+	swift package clean
 	if [ -f ./8PuzzleSolver ]; then rm ./8PuzzleSolver; fi
 
 test: test23
