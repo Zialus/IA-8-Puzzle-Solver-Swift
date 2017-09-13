@@ -96,21 +96,19 @@ func tableAndDepthEquality (_ lhs: State, rhs: State) -> Bool {
 
 
 // Makes multi-dementional Arrays Equatable
-func == (lhs: [[Int]], rhs: [[Int]]) -> Bool{
+func == (lhs: [[Int]], rhs: [[Int]]) -> Bool {
 
-    if lhs.count != rhs.count{
+    if lhs.count != rhs.count {
         return false
     }
 
     let count = lhs.count
 
-    for i in 0..<count{
+    for i in 0..<count {
         if lhs[i] != rhs[i] {
             return false
         }
     }
-    
+
     return true
 }
-
-

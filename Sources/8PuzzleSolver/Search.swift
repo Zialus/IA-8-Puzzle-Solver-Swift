@@ -120,7 +120,7 @@ func iterativeDepthFirstSearch() -> (State) {
     return firstState
 }
 
-func greedySearch() -> (State){
+func greedySearch() -> (State) {
 
     var stateList = PriorityQueue<State>(sort: greedySort)
 
@@ -128,7 +128,7 @@ func greedySearch() -> (State){
 
     while !stateList.isEmpty {
 
-        if let state = stateList.dequeue(){
+        if let state = stateList.dequeue() {
 
 
             if isSolution(state, finalState: finalState) {
@@ -156,7 +156,7 @@ func greedySearch() -> (State){
 
 }
 
-func aStarSearch() -> (State){
+func aStarSearch() -> (State) {
 
     var stateList = PriorityQueue<State>(sort: aStartSort)
 
@@ -164,7 +164,7 @@ func aStarSearch() -> (State){
 
     while !stateList.isEmpty {
 
-        if let state = stateList.dequeue(){
+        if let state = stateList.dequeue() {
 
             if isSolution(state, finalState: finalState) {
                 return state
@@ -239,7 +239,7 @@ func IDASTAR() -> (State) {
 
         while !stateList.isEmpty {
 
-            if let state = stateList.dequeue(){
+            if let state = stateList.dequeue() {
 
                 if isSolution(state, finalState: finalState) {
                     return state
@@ -253,13 +253,13 @@ func IDASTAR() -> (State) {
                         visitedStates.insert(child)
                     }
                 }
-                
-                
-                
+
+
+
             }
         }
-        
-        
+
+
         current_cost+=1
     }
 
@@ -277,7 +277,7 @@ func greedySort (_ lhs: State, rhs: State) -> Bool {
 func aStartSort (_ lhs: State, rhs: State) -> Bool {
 
     return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
-    
+
 }
 
 func generateChild(_ currentState: State) -> ([State]) {
@@ -382,7 +382,7 @@ func hasSolution(_ initialTable: [[Int]], finalTable: [[Int]]) -> Bool {
     }
 
     return initialTableParity%2 == finalTableParity%2
-    
+
 }
 
 func isSolution(_ someState: State, finalState: State) -> (Bool) {
@@ -393,16 +393,16 @@ func findCoordinates(_ number: Int, matrix: [[Int]]) -> (row: Int, col: Int)? {
     for i in 0..<3 {
         for j in 0..<3 {
             if matrix[i][j]==number {
-                return (i,j)
+                return (i, j)
             }
         }
     }
     return nil
 }
 
-func manhantanDistance(_ n:Int,currentTable: [[Int]] ) -> (Int)? {
+func manhantanDistance(_ n: Int, currentTable: [[Int]] ) -> (Int)? {
 
-    if let (x1,y1) = findCoordinates(n, matrix: currentTable), let (x2,y2) = findCoordinates(n, matrix: finalState.table){
+    if let (x1, y1) = findCoordinates(n, matrix: currentTable), let (x2, y2) = findCoordinates(n, matrix: finalState.table) {
         return abs(x1-x2) + abs(y1-y2)
     }
 
@@ -419,6 +419,6 @@ func getCostTo(_ currentTable: [[Int]]) -> (Int) {
         totalCost+=distance
     }
 
-    
+
     return totalCost
 }

@@ -86,7 +86,4 @@ while searchType == nil {
     searchType = searchScreen()
 }
 
-
 chooseRoute(searchType!)
-
-

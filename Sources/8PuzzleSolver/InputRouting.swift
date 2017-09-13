@@ -8,7 +8,7 @@
 
 import Foundation
 
-func chooseRoute(_ searchType: Int)->() {
+func chooseRoute(_ searchType: Int) {
 
     let start = Date()
 
@@ -42,14 +42,13 @@ func chooseRoute(_ searchType: Int)->() {
         print("The number you selected is not associated with any search option")
     }
 
-
     print("I FOUND THE ANSWER!!!")
     print()
 
     let end = Date()
     let timeInterval: Double = end.timeIntervalSince(start)
 
-    print("Elapsed Time: \(timeInterval) seconds");
+    print("Elapsed Time: \(timeInterval) seconds")
 
     print(answer)
 
@@ -58,9 +57,7 @@ func chooseRoute(_ searchType: Int)->() {
     print("Number of nodes generated: \(generatedNodes)")
 
     print("Number of nodes that actually got used: \(passedByNodes)")
-    
+
     answer.printPath()
-    
-    
-    
+
 }
