@@ -2,6 +2,7 @@
 //  Heap.swift
 //  Written for the Swift Algorithm Club by Kevin Randrup and Matthijs Hollemans
 //
+
 public struct Heap<T> {
     /** The array that stores the heap's nodes. */
     var elements = [T]()
@@ -206,6 +207,7 @@ public struct Heap<T> {
 }
 
 // MARK: - Searching
+
 extension Heap where T: Equatable {
     /**
      * Searches the heap for the given element. Performance: O(n).
@@ -213,7 +215,7 @@ extension Heap where T: Equatable {
     public func index(of element: T) -> Int? {
         return index(of: element, 0)
     }
-    
+
     fileprivate func index(of element: T, _ i: Int) -> Int? {
         if i >= count { return nil }
         if isOrderedBefore(element, elements[i]) { return nil }
