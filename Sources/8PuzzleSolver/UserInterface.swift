@@ -8,7 +8,7 @@
 
 import Foundation
 
-func setupScreen() -> () {
+func setupScreen() {
 
     print("\t +-----------------------+ ")
     print("\t | IT'S JOGO DOS 8 TIME! | ")
@@ -112,9 +112,9 @@ func searchScreen() -> (Int?) {
         } else {
             return nil
         }
-        
+
     } else {
         return nil
     }
-    
+
 }
