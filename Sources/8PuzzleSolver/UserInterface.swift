@@ -28,7 +28,7 @@ func setupScreen() {
     tryingToReadFirst:
         if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.characters.split(separator: " ").map(String.init)
+        var string_table = userInput.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {
@@ -59,7 +59,7 @@ func setupScreen() {
     tryingToReadFinal:
         if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.characters.split(separator: " ").map(String.init)
+        var string_table = userInput.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {
