@@ -56,13 +56,7 @@ let finalState = State(
     blank_position_y: index_j
 )
 
-print()
-print("Here is your initial Table:")
-firstState.prettyPrint()
-print("Here is your final Table")
-finalState.prettyPrint()
-print("The Manhantan Distance is: \(getCostTo(firstState.table)) ")
-print()
+printManhantanInfo()
 
 var passedByNodes = 0
 var generatedNodes = 0

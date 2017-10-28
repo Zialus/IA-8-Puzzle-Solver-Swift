@@ -120,3 +120,13 @@ func searchScreen() -> (Int?) {
     }
 
 }
+
+func printManhantanInfo() {
+    print()
+    print("Here is your initial Table:")
+    firstState.prettyPrint()
+    print("Here is your final Table")
+    finalState.prettyPrint()
+    print("The Manhantan Distance is: \(getCostTo(firstState.table)) ")
+    print()
+}
