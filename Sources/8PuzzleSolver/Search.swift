@@ -275,59 +275,59 @@ func aStartSort (_ lhs: State, rhs: State) -> Bool {
 func generateChild(_ currentState: State) -> ([State]) {
     var newStates = [State]()
 
-    //Coordenates of blank position
+    // Coordenates of blank position
     let x = currentState.blank_position_x
     let y = currentState.blank_position_y
 
-    //move célula em branco para a esquerda
+    // move blank cell to the left
     if y>0 {
-        //tabela auxiliar que começa como sendo copia da original
+        // auxiliary table starts as copy of the original table
         var aux_table = currentState.table
-        //move célula
+        // move cell
         aux_table[x][y]=aux_table[x][y-1]
         aux_table[x][y-1]=0
-        //adiciona tabela à lista
+        // add new table
         let auxState = State(table: aux_table, parent: currentState, move: "L", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y-1)
         newStates.append(auxState)
         generatedNodes+=1
     }
-    //move célula em branco para a direita
+    // move blank cell to the right
     if y<2 {
-        //tabela auxiliar que começa como sendo copia da original
+        // auxiliary table starts as copy of the original table
         var aux_table = currentState.table
-        //move célula
+        // move cell
         aux_table[x][y]=aux_table[x][y+1]
         aux_table[x][y+1]=0
-        //adiciona tabela à lista
+        // add new table
         let auxState = State(table: aux_table, parent: currentState, move: "R", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x, blank_position_y: currentState.blank_position_y+1)
         newStates.append(auxState)
         generatedNodes+=1
     }
 
-    //move célula em branco para cima
+    // move blank cell upwards
     if x>0 {
-        //tabela auxiliar que começa como sendo copia da original
+        // auxiliary table starts as copy of the original table
         var aux_table = currentState.table
-        //move célula
+        // move cell
         aux_table[x][y]=aux_table[x-1][y]
         aux_table[x-1][y]=0
-        //adiciona tabela à lista
+        // add new table
         let auxState = State(table: aux_table, parent: currentState, move: "U", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x-1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
         generatedNodes+=1
     }
 
-    //move célula em branco para baixo
+    // move blank cell downards
     if x<2 {
-        //tabela auxiliar que começa como sendo copia da original
+        // auxiliary table starts as copy of the original table
         var aux_table = currentState.table
-        //move célula
+        // move cell
         aux_table[x][y]=aux_table[x+1][y]
         aux_table[x+1][y]=0
-        //adiciona tabela à lista
+        // add new table
         let auxState = State(table: aux_table, parent: currentState, move: "D", depth: currentState.depth+1, cost: getCostTo(aux_table),
                              blank_position_x: currentState.blank_position_x+1, blank_position_y: currentState.blank_position_y)
         newStates.append(auxState)
