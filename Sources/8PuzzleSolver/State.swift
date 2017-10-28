@@ -73,10 +73,10 @@ extension State: Hashable {
     }
 }
 
-extension State: Equatable {}
-
-func == (lhs: State, rhs: State) -> Bool {
-    return lhs.table == rhs.table
+extension State: Equatable {
+    static func == (lhs: State, rhs: State) -> Bool {
+        return lhs.table == rhs.table
+    }
 }
 
 
