@@ -1,20 +1,25 @@
 import Foundation
 
 func setupScreen() {
+    let message = """
+           +-------------------------+
+           |  IT'S JOGO DOS 8 TIME!  |
+           +-------------------------+
 
-    print("\t +-----------------------+ ")
-    print("\t | IT'S JOGO DOS 8 TIME! | ")
-    print("\t +-----------------------+ ")
-    print("")
-    print("----Input Example----")
-    print("")
-    print("This:")
-    print("\t1 2 3 4 0 5 6 7 8")
-    print("Turns into this:")
-    print("\t\t1 2 3")
-    print("\t\t4 _ 5")
-    print("\t\t6 7 8")
-    print()
+           +------ Input Example ----+
+           |                         |
+           |          This:          |
+           |     1 2 3 4 0 5 6 7 8   |
+           |                         |
+           |     Turns into this:    |
+           |          1 2 3          |
+           |          4 _ 5          |
+           |          6 7 8          |
+           +-------------------------+
+
+    """
+
+    print(message)
 
     readInitialTable()
 
@@ -90,22 +95,28 @@ func readFinalTable() {
 
 }
 
-func searchScreen() -> (Int?) {
+func searchScreen() -> Int? {
 
     if(!hasSolution(firstState.table, finalTable: finalState.table)) {
         print("THERE IS NO SOLUTION FOR THE PROVIDED TABLES")
         exit(0)
     }
 
-    print("Selecione o tipo de pesquisa")
-    print("1) DFS")
-    print("2) BFS")
-    print("3) iDFS")
-    print("4) Greedy")
-    print("5) A*")
-    print("6) Depth Limited DFS")
-    print("7) IDA*")
-    print("-----------------------------------")
+    let message = """
+            +----------------------------------+
+            |Select the desired search type:   |
+            |1) DFS                            |
+            |2) BFS                            |
+            |3) iDFS                           |
+            |4) Greedy                         |
+            |5) A*                             |
+            |6) Depth Limited DFS              |
+            |7) IDA*                           |
+            +----------------------------------+
+
+            """
+
+    print(message)
     print("Search Type: ", terminator: "")
 
     if let searchType = readLine() {
