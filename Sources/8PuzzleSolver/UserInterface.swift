@@ -24,7 +24,7 @@ func setupScreen() {
 
 func readInitialTable() {
 
-    print("Introduce your initial table here: ", terminator:"")
+    print("Introduce your initial table here: ", terminator: "")
     tryingToReadFirst:
         if let userInput = readLine(strippingNewline: true) {
 
@@ -121,12 +121,12 @@ func searchScreen() -> (Int?) {
 
 }
 
-func printManhantanInfo() {
+func printManhattanInfo() {
     print()
-    print("Here is your initial Table:")
+    print("Here is your Initial Table:")
     firstState.prettyPrint()
-    print("Here is your final Table")
+    print("Here is your Final Table:")
     finalState.prettyPrint()
-    print("The Manhantan Distance is: \(getCostTo(firstState.table)) ")
+    print("The Manhattan Distance is: \(getCostTo(firstState.table)) ")
     print()
 }

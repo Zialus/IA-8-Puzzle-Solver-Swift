@@ -56,7 +56,7 @@ let finalState = State(
     blank_position_y: index_j
 )
 
-printManhantanInfo()
+printManhattanInfo()
 
 var passedByNodes = 0
 var generatedNodes = 0
