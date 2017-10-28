@@ -7,12 +7,12 @@ var finalTableFromUser = Array(repeating: Array(repeating: 0, count: 3), count: 
 // Display the Setup Screen
 setupScreen()
 
-// List to Store visited States
+// Set to store visited States
 var visitedStates = Set<State>()
 
 var index_i = 0
 var index_j = 0
-// Find blank position for the initial state
+// Search where the blank position is in the input for the initial state
 for i in 0..<3 {
     for j in 0..<3 {
         if firstTableFromUser[i][j]==0 {
@@ -33,10 +33,9 @@ let firstState = State(
     blank_position_y: index_j
 )
 
-
 index_i = 0
 index_j = 0
-// Find blank position for the Final State
+// Search where the blank position is in the input for the final state
 for i in 0..<3 {
     for j in 0..<3 {
         if finalTableFromUser[i][j]==0 {

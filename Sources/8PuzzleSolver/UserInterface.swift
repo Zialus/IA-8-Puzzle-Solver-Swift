@@ -47,7 +47,7 @@ func setupScreen() {
     }
 
 
-    print("Introduce your final table here: ", terminator:"")
+    print("Introduce your final table here: ", terminator: "")
     tryingToReadFinal:
         if let userInput = readLine(strippingNewline: true) {
 
@@ -77,7 +77,6 @@ func setupScreen() {
         print("BAD INPUT!!!")
     }
 
-
 }
 
 func searchScreen() -> (Int?) {
@@ -96,7 +95,7 @@ func searchScreen() -> (Int?) {
     print("6) Depth Limited DFS")
     print("7) IDA*")
     print("-----------------------------------")
-    print("Search Type: ", terminator:"")
+    print("Search Type: ", terminator: "")
 
     if let searchType = readLine() {
         if let searchType = Int(searchType) {
