@@ -1,11 +1,3 @@
-//
-//  Search.swift
-//  Jogo8
-//
-//  Created by Raul Ferreira on 2/24/16.
-//  Copyright © 2016 FCUP. All rights reserved.
-//
-
 import Foundation
 
 func depthFirstSearch() -> (State) {

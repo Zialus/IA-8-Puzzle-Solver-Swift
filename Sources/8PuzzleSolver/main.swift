@@ -1,11 +1,3 @@
-//
-//  main.swift
-//  Jogo8
-//
-//  Created by Raul Ferreira on 2/22/16.
-//  Copyright © 2016 FCUP. All rights reserved.
-//
-
 import Foundation
 
 // [][] ---> 2D Array for matrices representing the 8-puzzle-game-board

@@ -1,11 +1,3 @@
-//
-//  SetupScreen.swift
-//  Jogo8
-//
-//  Created by Raul Ferreira on 3/1/16.
-//  Copyright © 2016 FCUP. All rights reserved.
-//
-
 import Foundation
 
 func setupScreen() {
