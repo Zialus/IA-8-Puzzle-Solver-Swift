@@ -58,6 +58,11 @@ let finalState = State(
 
 printManhattanInfo()
 
+if(!hasSolution(firstState.table, finalTable: finalState.table)) {
+    print("THERE IS NO SOLUTION FOR THE PROVIDED TABLES")
+    exit(0)
+}
+
 var passedByNodes = 0
 var generatedNodes = 0
 

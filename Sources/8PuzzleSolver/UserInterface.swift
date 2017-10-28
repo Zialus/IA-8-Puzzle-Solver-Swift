@@ -97,25 +97,19 @@ func readFinalTable() {
 
 func searchScreen() -> Int? {
 
-    if(!hasSolution(firstState.table, finalTable: finalState.table)) {
-        print("THERE IS NO SOLUTION FOR THE PROVIDED TABLES")
-        exit(0)
-    }
-
     let message = """
-            +----------------------------------+
-            |Select the desired search type:   |
-            |1) DFS                            |
-            |2) BFS                            |
-            |3) iDFS                           |
-            |4) Greedy                         |
-            |5) A*                             |
-            |6) Depth Limited DFS              |
-            |7) IDA*                           |
-            +----------------------------------+
+        +----------------------------------+
+        |Select the desired search type:   |
+        |1) DFS                            |
+        |2) BFS                            |
+        |3) iDFS                           |
+        |4) Greedy                         |
+        |5) A*                             |
+        |6) Depth Limited DFS              |
+        |7) IDA*                           |
+        +----------------------------------+
 
-            """
-
+        """
     print(message)
     print("Search Type: ", terminator: "")
 
@@ -125,7 +119,6 @@ func searchScreen() -> Int? {
         } else {
             return nil
         }
-
     } else {
         return nil
     }

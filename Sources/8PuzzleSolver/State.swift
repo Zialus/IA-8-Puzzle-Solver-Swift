@@ -19,9 +19,9 @@ class State {
         self.cost = cost
     }
 
-    deinit {
-//        print("\(table) is being deinitialized")
-    }
+    // deinit {
+    //    print("\(table) is being deinitialized")
+    // }
 
     func printPath() {
         var nodeToPrint: State? = self
@@ -76,14 +76,9 @@ extension State: Hashable {
 extension State: Equatable {
     static func == (lhs: State, rhs: State) -> Bool {
         return lhs.table == rhs.table
+        // return lhs.table == rhs.table && lhs.depth == rhs.depth
     }
 }
-
-
-func tableAndDepthEquality (_ lhs: State, rhs: State) -> Bool {
-    return lhs.table == rhs.table && lhs.depth == rhs.depth
-}
-
 
 // Makes multi-dementional Arrays Equatable
 func == (lhs: [[Int]], rhs: [[Int]]) -> Bool {
