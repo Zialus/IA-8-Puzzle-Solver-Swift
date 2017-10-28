@@ -16,6 +16,14 @@ func setupScreen() {
     print("\t\t6 7 8")
     print()
 
+    readInitialTable()
+
+    readFinalTable()
+
+}
+
+func readInitialTable() {
+
     print("Introduce your initial table here: ", terminator:"")
     tryingToReadFirst:
         if let userInput = readLine(strippingNewline: true) {
@@ -46,6 +54,9 @@ func setupScreen() {
         print("BAD INPUT!!!")
     }
 
+}
+
+func readFinalTable() {
 
     print("Introduce your final table here: ", terminator: "")
     tryingToReadFinal:
