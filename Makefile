@@ -9,13 +9,16 @@ clean:
 	swift package clean
 	if [ -f ./$(EXEC) ]; then rm ./$(EXEC); fi
 
-test: test23
+test: test1 test11 test23
 
 test1:
-	./8PuzzleSolver < InputExamples/depth1/5.txt
+	time ./$(EXEC) < InputExamples/depth1/5.txt
 
 test11:
-	./8PuzzleSolver < InputExamples/depth11/5.txt
+	time ./$(EXEC) < InputExamples/depth11/5.txt
 
 test23:
-	./8PuzzleSolver < InputExamples/depth23/3.txt
+	time ./$(EXEC) < InputExamples/depth23/3.txt
+
+test28:
+	time ./$(EXEC) < InputExamples/depth28/3.txt
