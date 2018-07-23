@@ -4,8 +4,7 @@ env: SWIFT_VERSION=4.1.2
 matrix:
   include:
     - os: linux
-      sudo: required
-      dist: trusty
+      dist: xenial
     - os: osx
       osx_image: xcode9.4
 
