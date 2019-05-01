@@ -68,8 +68,8 @@ extension State: CustomStringConvertible {
 }
 
 extension State: Hashable {
-    var hashValue: Int {
-        return description.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(description.hashValue)
     }
 }
 
