@@ -1,5 +1,5 @@
-*.xcodeproj
 .build/
-DerivedData/
-Package.resolved
+.swiftpm/
+
 8PuzzleSolver
+!8PuzzleSolver/
