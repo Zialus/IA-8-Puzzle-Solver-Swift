@@ -33,7 +33,7 @@ func readInitialTable() {
     tryingToReadFirst:
         if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.split(separator: " ").map(String.init)
+        let string_table = userInput.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {
@@ -67,7 +67,7 @@ func readFinalTable() {
     tryingToReadFinal:
         if let userInput = readLine(strippingNewline: true) {
 
-        var string_table = userInput.split(separator: " ").map(String.init)
+        let string_table = userInput.split(separator: " ").map(String.init)
         print("Checking Table...")
 
         if string_table.count != 9 {
