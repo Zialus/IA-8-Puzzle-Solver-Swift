@@ -1,12 +1,29 @@
 language: generic
-env: SWIFT_VERSION=5.0.1
+env: SWIFT_VERSION=5.3.3
 
 matrix:
   include:
     - os: linux
       dist: xenial
+      name: "16.04"
+    - os: linux
+      dist: bionic
+      name: "18.04"
+    - os: linux
+      dist: focal
+      name: "20.04"
     - os: osx
-      osx_image: xcode10.2 # Mojave
+      osx_image: xcode10.1
+      name: High Sierra
+    - os: osx
+      osx_image: xcode11.3
+      name: Mojave
+    - os: osx
+      osx_image: xcode12.2
+      name: Catalina
+    - os: osx
+      osx_image: xcode12.4
+      name: Big Sur
 
 install:
   - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
