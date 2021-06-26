@@ -1,17 +1,17 @@
 language: generic
 env: SWIFT_VERSION=5.4
 
-matrix:
+jobs:
   include:
     - os: linux
       dist: xenial
-      name: "16.04"
+      name: Ubuntu 16.04
     - os: linux
       dist: bionic
-      name: "18.04"
+      name: Ubuntu 18.04
     - os: linux
       dist: focal
-      name: "20.04"
+      name: Ubuntu 20.04
     - os: osx
       osx_image: xcode10.1
       name: High Sierra
@@ -27,6 +27,7 @@ matrix:
 
 install:
   - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+
 script:
   - make
   - make test
