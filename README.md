@@ -8,7 +8,7 @@ A `swift` implementation of 7 different algorithms to solve the 8-puzzle game.
 
 [![Quality Gate Status][sonar-badge]][sonar-url]
 
-[swift-badge]: https://img.shields.io/badge/Swift-5.10-orange.svg?style=flat
+[swift-badge]: https://img.shields.io/badge/Swift-6.1-orange.svg?style=flat
 [swift-url]: https://swift.org
 
 [platform-badge]: https://img.shields.io/badge/Platforms-OS%20X%20--%20Linux-blue.svg?style=flat
