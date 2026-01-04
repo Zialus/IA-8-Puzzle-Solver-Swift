@@ -44,7 +44,7 @@ class LinkedList<T: Equatable> {
         self.count += 1
     }
 
-    func indexOf (_ itemToFind: T) -> Int? {
+    func indexOf(_ itemToFind: T) -> Int? {
         var index = 0
         if self.count > 0 {                     // --if list isn't empty
             var currentNode: Node? = self.head

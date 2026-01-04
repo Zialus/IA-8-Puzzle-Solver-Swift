@@ -4,9 +4,9 @@ func chooseRoute(_ searchType: Int) {
 
     let start = Date()
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     var answer = firstState
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
 
     switch searchType {
     case 1:

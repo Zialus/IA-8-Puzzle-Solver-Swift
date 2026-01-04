@@ -21,15 +21,13 @@ func depthFirstSearch() -> (State) {
                 stateList.addLast(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
-                if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                if passedByNodes % 1000 == 0 { print(passedByNodes) }
             }
         }
 
-
-
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 
 }
@@ -45,11 +43,9 @@ func breadthFirstSearch() -> (State) {
         let state = stateList.getItemAt(0)!
         stateList.removeItem(0)
 
-
         if isSolution(state, finalState: finalState) {
             return state
         }
-
 
         let childList = generateChild(state)
 
@@ -58,15 +54,13 @@ func breadthFirstSearch() -> (State) {
                 stateList.addLast(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
-                if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                if passedByNodes % 1000 == 0 { print(passedByNodes) }
             }
         }
 
-
-
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 }
 
@@ -77,7 +71,6 @@ func iterativeDepthFirstSearch() -> (State) {
     while current_depth < max_depth {
         print("Current Max Depth is \(current_depth)")
         visitedStates.removeAll()
-
 
         let stateList = LinkedList<State>()
         stateList.addLast(firstState)
@@ -97,7 +90,7 @@ func iterativeDepthFirstSearch() -> (State) {
                     stateList.addLast(child)
                     visitedStates.insert(child)
                     passedByNodes+=1
-                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                    if passedByNodes % 1000 == 0 { print(passedByNodes) }
                 }
             }
 
@@ -108,7 +101,7 @@ func iterativeDepthFirstSearch() -> (State) {
 
     print("You went past the max depth!")
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 }
 
@@ -122,11 +115,9 @@ func greedySearch() -> (State) {
 
         if let state = stateList.dequeue() {
 
-
             if isSolution(state, finalState: finalState) {
                 return state
             }
-
 
             let childList = generateChild(state)
 
@@ -135,7 +126,7 @@ func greedySearch() -> (State) {
                     stateList.enqueue(child)
                     visitedStates.insert(child)
                     passedByNodes+=1
-                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                    if passedByNodes % 1000 == 0 { print(passedByNodes) }
                 }
             }
 
@@ -143,7 +134,7 @@ func greedySearch() -> (State) {
 
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 
 }
@@ -169,7 +160,7 @@ func aStarSearch() -> (State) {
                     stateList.enqueue(child)
                     visitedStates.insert(child)
                     passedByNodes+=1
-                    if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                    if passedByNodes % 1000 == 0 { print(passedByNodes) }
                 }
             }
 
@@ -177,7 +168,7 @@ func aStarSearch() -> (State) {
 
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 
 }
@@ -205,15 +196,13 @@ func depthLimitedDepthFirstSearch() -> (State) {
                 stateList.addLast(child)
                 visitedStates.insert(child)
                 passedByNodes+=1
-                if passedByNodes % 1000 == 0 { print (passedByNodes) }
+                if passedByNodes % 1000 == 0 { print(passedByNodes) }
             }
         }
 
-
-
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 
 }
@@ -246,27 +235,24 @@ func IDASTAR() -> (State) {
                     }
                 }
 
-
-
             }
         }
-
 
         current_cost+=1
     }
 
-    //TOTAL HACK I KNOW BUT I DONT CARE
+    // TOTAL HACK I KNOW BUT I DONT CARE
     return firstState
 
 }
 
-func greedySort (_ lhs: State, rhs: State) -> Bool {
+func greedySort(_ lhs: State, rhs: State) -> Bool {
 
     return lhs.cost < rhs.cost
 
 }
 
-func aStartSort (_ lhs: State, rhs: State) -> Bool {
+func aStartSort(_ lhs: State, rhs: State) -> Bool {
 
     return lhs.cost + lhs.depth  <  rhs.cost + rhs.depth
 
@@ -333,7 +319,6 @@ func generateChild(_ currentState: State) -> ([State]) {
         newStates.append(auxState)
         generatedNodes+=1
     }
-
 
     return newStates
 }
@@ -410,7 +395,6 @@ func getCostTo(_ currentTable: [[Int]]) -> (Int) {
         let distance = manhattanDistance(i, currentTable: currentTable)!
         totalCost+=distance
     }
-
 
     return totalCost
 }
